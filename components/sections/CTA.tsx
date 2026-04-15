@@ -95,13 +95,13 @@ export default function CTA() {
         >
           <motion.p
             variants={fadeUp}
-            className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-emerald-400"
+            className="eyebrow-label mb-3 text-xs font-bold text-emerald-400"
           >
             What Happens Next
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-5xl font-black leading-tight text-white sm:text-6xl lg:text-7xl"
+            className="font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl"
           >
             Carry the <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">Story Forward</span>
           </motion.h2>
@@ -132,7 +132,7 @@ export default function CTA() {
               <motion.p variants={fadeUp} className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">
                 Prompt Bank
               </motion.p>
-              <motion.h3 variants={fadeUp} className="mt-4 text-2xl font-bold text-white sm:text-3xl">
+              <motion.h3 variants={fadeUp} className="font-display mt-4 text-2xl text-white sm:text-3xl">
                 Not sure what to write?
               </motion.h3>
               <motion.p variants={fadeUp} className="mt-4 text-sm leading-relaxed text-slate-300">
@@ -163,7 +163,7 @@ export default function CTA() {
             </div>
 
             <div className="p-8 lg:p-10">
-              <motion.h3 variants={fadeUp} className="text-2xl font-bold text-white sm:text-3xl">
+              <motion.h3 variants={fadeUp} className="font-display text-2xl text-white sm:text-3xl">
                 Share a Message or Suggestion
               </motion.h3>
               <motion.p variants={fadeUp} className="mt-3 text-sm leading-relaxed text-slate-400">

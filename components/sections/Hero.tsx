@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import AnimatedText from '@/components/ui/AnimatedText'
 import Button from '@/components/ui/Button'
 
 const HeroScene = dynamic(() => import('@/components/three/hero/HeroScene'), {
@@ -40,7 +39,7 @@ export default function Hero() {
 
       <div className="relative z-20 mx-auto flex w-full max-w-6xl flex-col items-center px-6 pt-24 text-center sm:px-8">
         <motion.p
-          className="mb-6 text-xs font-semibold uppercase tracking-[0.42em] text-cyan-100/60"
+          className="eyebrow-label mb-6 text-xs font-semibold text-cyan-100/60"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -56,11 +55,10 @@ export default function Hero() {
           custom={0.5}
           className="max-w-4xl"
         >
-          <AnimatedText
-            as="h1"
-            text="Peace and Global Harmony"
-            className="justify-center text-5xl font-black leading-none tracking-tight text-white sm:text-6xl md:text-7xl xl:text-[8rem]"
-          />
+          <h1 className="font-display text-5xl leading-[0.9] tracking-tight text-white sm:text-6xl md:text-7xl xl:text-[8rem]">
+            <span className="block whitespace-nowrap">Peace and</span>
+            <span className="block whitespace-nowrap">Global Harmony</span>
+          </h1>
         </motion.div>
 
         <motion.p

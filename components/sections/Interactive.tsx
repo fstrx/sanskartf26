@@ -89,13 +89,13 @@ export default function Interactive() {
         >
           <motion.p
             variants={fadeUp}
-            className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-purple-300"
+            className="eyebrow-label mb-3 text-xs font-bold text-purple-300"
           >
             Add to the Chorus
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
             A Field of{' '}
             <span className="bg-gradient-to-r from-violet-300 via-cyan-300 to-emerald-300 bg-clip-text text-transparent">

@@ -34,13 +34,13 @@ export default function Understanding() {
         >
           <motion.p
             variants={fadeUp}
-            className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-indigo-300"
+            className="eyebrow-label mb-3 text-xs font-bold text-indigo-300"
           >
             How Peace Takes Shape
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
             From Understanding to <span className="bg-gradient-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">Repair</span>
           </motion.h2>
@@ -60,7 +60,7 @@ export default function Understanding() {
           <div className="flex flex-col justify-between rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-8">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">Turning Point</p>
-              <h3 className="mt-4 text-3xl font-bold text-white sm:text-4xl">{activeStep.title}</h3>
+              <h3 className="font-display mt-4 text-3xl text-white sm:text-4xl">{activeStep.title}</h3>
               <p className="mt-4 text-base leading-relaxed text-slate-300">{activeStep.description}</p>
 
               {activeStep.quote && (

@@ -148,13 +148,13 @@ export default function Data() {
         >
           <motion.p
             variants={fadeUp}
-            className="text-xs font-bold tracking-[0.3em] uppercase text-emerald-400 mb-3"
+            className="eyebrow-label mb-3 text-xs font-bold text-emerald-400"
           >
             THE SCALE OF THE CHALLENGE
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
+            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
             What Conflict Costs{" "}
             <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
