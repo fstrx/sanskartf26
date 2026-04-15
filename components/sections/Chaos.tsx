@@ -61,7 +61,7 @@ export default function Chaos() {
               key={card.id}
               variants={scaleIn}
               whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.2 } }}
-              className="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-[linear-gradient(145deg,rgba(20,5,5,0.72),rgba(12,4,4,0.92))] p-6 backdrop-blur-md"
+              className="theme-surface-panel group relative overflow-hidden rounded-[1.75rem] p-6 backdrop-blur-md"
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(248,113,113,0.15),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative z-10">
@@ -83,7 +83,7 @@ export default function Chaos() {
                   </p>
                 )}
 
-                <div className="rounded-2xl border border-white/8 bg-black/20 p-4">
+                <div className="theme-surface-overlay rounded-2xl p-4">
                   <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-orange-200/70">Path Forward</p>
                   <p className="mt-2 text-sm text-slate-200">{card.pathForward}</p>
                 </div>

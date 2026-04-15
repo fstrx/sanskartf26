@@ -88,21 +88,21 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          className="mt-10 grid w-full max-w-3xl gap-3 rounded-[2rem] border border-white/10 bg-slate-950/35 p-4 text-left backdrop-blur-xl sm:grid-cols-3"
+          className="theme-surface-panel mt-10 grid w-full max-w-3xl gap-3 rounded-[2rem] p-4 text-left backdrop-blur-xl sm:grid-cols-3"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={1.35}
         >
-          <div className="rounded-2xl border border-white/8 bg-white/5 p-4">
+          <div className="theme-surface-card rounded-2xl p-4">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-cyan-300/75">Move</p>
             <p className="mt-2 text-sm text-slate-200">Shift the camera and bend the field around your cursor.</p>
           </div>
-          <div className="rounded-2xl border border-white/8 bg-white/5 p-4">
+          <div className="theme-surface-card rounded-2xl p-4">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-violet-300/75">Click</p>
             <p className="mt-2 text-sm text-slate-200">Pull the particles toward unity for a brief moment.</p>
           </div>
-          <div className="rounded-2xl border border-white/8 bg-white/5 p-4">
+          <div className="theme-surface-card rounded-2xl p-4">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-300/75">Continue</p>
             <p className="mt-2 text-sm text-slate-200">Follow the story from fracture, to repair, to participation.</p>
           </div>

@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useMemo } from "react";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -21,24 +22,37 @@ export default function Button({
   className = "",
   type = "button",
 }: ButtonProps) {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const offsetX = useMotionValue(0);
   const offsetY = useMotionValue(0);
   const x = useSpring(offsetX, { stiffness: 220, damping: 18, mass: 0.2 });
   const y = useSpring(offsetY, { stiffness: 220, damping: 18, mass: 0.2 });
 
   const base =
-    "group relative inline-flex items-center justify-center overflow-hidden rounded-full font-semibold text-sm px-6 py-3 transition-all duration-300 cursor-pointer select-none";
+    "theme-button group relative inline-flex items-center justify-center overflow-hidden rounded-full border text-sm font-semibold px-6 py-3 transition-all duration-300 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/50 focus-visible:ring-offset-2";
 
-  const variants: Record<string, string> = {
-    primary:
-      "bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-900/40",
-    secondary:
-      "bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-900/40",
-    ghost:
-      "bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-sm",
-    outline:
-      "bg-transparent text-white border border-white/40 hover:border-white hover:bg-white/5",
-  };
+  const variants: Record<string, string> = isLight
+    ? {
+        primary:
+          "border-violet-500/70 bg-gradient-to-r from-violet-600 to-sky-600 text-white shadow-[0_18px_38px_-20px_rgba(124,58,237,0.55)] hover:from-violet-500 hover:to-sky-500 focus-visible:ring-offset-[#f6f4ef]",
+        secondary:
+          "border-emerald-500/70 bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-[0_18px_38px_-20px_rgba(5,150,105,0.5)] hover:from-emerald-500 hover:to-teal-500 focus-visible:ring-offset-[#f6f4ef]",
+        ghost:
+          "border-slate-900/10 bg-white/82 text-slate-900 shadow-[0_16px_32px_-24px_rgba(15,23,42,0.35)] backdrop-blur-md hover:bg-white",
+        outline:
+          "border-slate-900/14 bg-white/56 text-slate-900 shadow-[0_14px_30px_-24px_rgba(15,23,42,0.28)] backdrop-blur-md hover:border-slate-900/22 hover:bg-white/76",
+      }
+    : {
+        primary:
+          "border-violet-500/30 bg-gradient-to-r from-violet-600 to-indigo-600 text-white hover:from-violet-500 hover:to-indigo-500 shadow-lg shadow-violet-900/40 focus-visible:ring-offset-[#050208]",
+        secondary:
+          "border-emerald-500/30 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-900/40 focus-visible:ring-offset-[#050208]",
+        ghost:
+          "border-white/18 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm focus-visible:ring-offset-[#050208]",
+        outline:
+          "border-white/40 bg-transparent text-white hover:border-white hover:bg-white/5 focus-visible:ring-offset-[#050208]",
+      };
 
   const classes = `${base} ${variants[variant]} ${className}`;
 
@@ -77,6 +91,7 @@ export default function Button({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
+          data-variant={variant}
           className={classes}
           style={{ x, y }}
           onPointerMove={handlePointerMove}
@@ -94,7 +109,7 @@ export default function Button({
         onPointerLeave={handlePointerLeave}
         {...motionProps}
       >
-        <Link href={href} className={classes}>
+        <Link href={href} className={classes} data-variant={variant}>
           {content}
         </Link>
       </motion.div>
@@ -105,6 +120,7 @@ export default function Button({
     <motion.button
       type={type}
       onClick={onClick}
+      data-variant={variant}
       className={classes}
       style={{ x, y }}
       onPointerMove={handlePointerMove}

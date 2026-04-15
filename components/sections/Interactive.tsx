@@ -77,7 +77,7 @@ export default function Interactive() {
     <div className={className}>
       <div className="mx-auto mb-6 flex max-w-4xl flex-wrap justify-center gap-3">
         {interactivePrompts.map((prompt) => (
-          <div key={prompt} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 backdrop-blur-md">
+          <div key={prompt} className="theme-surface-card rounded-full px-4 py-2 text-sm text-slate-200 backdrop-blur-md">
             {prompt}
           </div>
         ))}
@@ -139,21 +139,21 @@ export default function Interactive() {
 
       <div ref={stageRef} className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:hidden">
-          <div className="w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(4,10,22,0.92),rgba(2,7,18,0.9))] backdrop-blur-xl">
+          <div className="theme-surface-panel w-full overflow-hidden rounded-[2rem] backdrop-blur-xl">
             <div className="grid gap-6 p-5 lg:p-6">
               <div className="relative min-h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem]">
                 <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
 
                 <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
-                  <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                  <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
                     Move to {forceMode}
                   </span>
-                  <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                  <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
                     Click for ripple
                   </span>
                 </div>
 
-                <div className="pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-slate-950/65 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
+                <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
                   <div className="flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-300">
                     <span>{storyStages[activeStageIndex].label}</span>
                     <span>{Math.round(harmonyProgress * 100)}%</span>
@@ -183,8 +183,8 @@ export default function Interactive() {
                       className={`rounded-[1.75rem] border p-6 ${
                         activeStageIndex === index
                           ? 'border-white/16 bg-white/8 shadow-[0_0_50px_rgba(34,211,238,0.08)]'
-                          : 'border-white/8 bg-white/5'
-                      }`}
+                          : 'theme-surface-card'
+                       }`}
                     >
                       <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">{stage.label}</p>
                       <h3 className="mt-3 text-2xl font-bold text-white">{stage.title}</h3>
@@ -196,10 +196,10 @@ export default function Interactive() {
                 <motion.div
                   animate={{ opacity: 0.25 + panelStates[2] * 0.75, y: 30 - panelStates[2] * 30 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                  className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6"
+                  className="theme-surface-card rounded-[1.75rem] p-6"
                 >
                   <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Message in focus</p>
-                  <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-slate-950/45 p-5">
+                   <div className="theme-surface-overlay mt-4 rounded-[1.5rem] p-5">
                     <span className={`inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
                       {highlightedMessage.theme}
                     </span>
@@ -235,22 +235,22 @@ export default function Interactive() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportConfig}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(4,10,22,0.92),rgba(2,7,18,0.9))] backdrop-blur-xl lg:h-[calc(100svh-12rem)]"
+               className="theme-surface-panel w-full overflow-hidden rounded-[2rem] backdrop-blur-xl lg:h-[calc(100svh-12rem)]"
             >
               <div className="grid gap-6 p-5 lg:h-full lg:grid-cols-[1.2fr_0.8fr] lg:p-6">
                 <div className="relative min-h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem] lg:h-full lg:min-h-0">
                   <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
 
                   <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
-                    <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                    <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
                       Move to {forceMode}
                     </span>
-                    <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                    <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
                       Click for ripple
                     </span>
                   </div>
 
-                  <div className="pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-slate-950/65 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
+                  <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
                     <div className="flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-300">
                       <span>{storyStages[activeStageIndex].label}</span>
                       <span>{Math.round(harmonyProgress * 100)}%</span>
@@ -265,7 +265,7 @@ export default function Interactive() {
                 </div>
 
                 <div className="hidden lg:block">
-                  <div className="relative h-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5">
+                  <div className="theme-surface-card relative h-full overflow-hidden rounded-[1.75rem]">
                     <motion.div
                       animate={{ y: `-${desktopPanelShift}%` }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
@@ -287,7 +287,7 @@ export default function Interactive() {
                       ))}
 
                       <div className="flex h-full min-h-0 shrink-0 flex-col justify-center gap-5 p-6 xl:p-8">
-                        <div className="rounded-[1.75rem] border border-white/10 bg-slate-950/45 p-5 xl:p-6">
+                        <div className="theme-surface-overlay rounded-[1.75rem] p-5 xl:p-6">
                           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Message in focus</p>
                           <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
                             {highlightedMessage.theme}

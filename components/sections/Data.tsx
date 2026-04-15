@@ -65,11 +65,8 @@ function StatCard({ stat }: StatCardProps) {
     <motion.div
       ref={ref}
       variants={scaleIn}
-      className="relative group rounded-2xl border border-white/8 p-6 lg:p-8 overflow-hidden transition-all duration-300"
-      style={{
-        background: "rgba(2, 13, 8, 0.7)",
-        backdropFilter: "blur(12px)",
-      }}
+      className="theme-surface-panel relative group overflow-hidden rounded-2xl p-6 transition-all duration-300 lg:p-8"
+      style={{ backdropFilter: "blur(12px)" }}
       whileHover={{
         borderColor: stat.color + "60",
         boxShadow: `0 0 28px ${stat.color}25, 0 0 0 1px ${stat.color}30`,

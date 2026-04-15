@@ -89,7 +89,7 @@ export default function Global() {
             className="flex w-full flex-col gap-8 lg:flex-row"
           >
             <div className="flex flex-row gap-2 overflow-x-auto pb-2 lg:w-60 lg:flex-shrink-0 lg:flex-col lg:overflow-visible lg:pb-0">
-              <div className="hidden rounded-2xl border border-white/8 bg-white/[0.03] p-4 lg:block">
+              <div className="theme-surface-card hidden rounded-2xl p-4 lg:block">
                 <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-cyan-200/65">Scroll to move</p>
                 <p className="mt-3 text-sm leading-relaxed text-slate-300">Tap any region to jump directly to it.</p>
               </div>
@@ -141,11 +141,10 @@ export default function Global() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="h-full rounded-2xl border border-white/8 p-6 sm:p-8 lg:p-10"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(5,12,18,0.9) 0%, rgba(2,5,10,0.95) 100%)',
-                    backdropFilter: 'blur(16px)',
-                  }}
+                   className="theme-surface-panel h-full rounded-2xl p-6 sm:p-8 lg:p-10"
+                   style={{
+                     backdropFilter: 'blur(16px)',
+                   }}
                 >
                   <div className="mb-5 flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-400">
                     <span>Global Practice {activeIndex + 1} / {globalRegions.length}</span>
@@ -196,7 +195,7 @@ export default function Global() {
                     </ul>
                   </div>
 
-                  <div className="mt-8 rounded-2xl border border-white/8 bg-white/[0.03] p-5">
+                   <div className="theme-surface-card mt-8 rounded-2xl p-5">
                     <p className="mb-2 text-xs font-bold uppercase tracking-widest" style={{ color: active.color + 'cc' }}>
                       Carry Forward
                     </p>

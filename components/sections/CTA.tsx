@@ -125,7 +125,7 @@ export default function CTA() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] backdrop-blur-xl"
+          className="theme-surface-panel overflow-hidden rounded-[2rem] backdrop-blur-xl"
         >
           <div className="grid gap-0 lg:grid-cols-[0.72fr_1fr]">
             <div className="border-b border-white/8 p-8 lg:border-b-0 lg:border-r lg:p-10">
@@ -145,14 +145,14 @@ export default function CTA() {
                     key={prompt}
                     type="button"
                     onClick={() => handlePromptClick(prompt)}
-                    className="w-full rounded-2xl border border-white/10 bg-white/5 p-4 text-left text-sm leading-relaxed text-slate-200 transition-all duration-200 hover:border-emerald-300/30 hover:bg-emerald-400/8"
+                    className="theme-surface-card w-full rounded-2xl p-4 text-left text-sm leading-relaxed text-slate-200 transition-all duration-200 hover:border-emerald-300/30 hover:bg-emerald-400/8"
                   >
                     {prompt}
                   </button>
                 ))}
               </div>
 
-              <div className="mt-8 rounded-[1.5rem] border border-white/8 bg-slate-950/35 p-5">
+              <div className="theme-surface-overlay mt-8 rounded-[1.5rem] p-5">
                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">What we are asking for</p>
                 <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
                   <li>One peace message you believe people need to hear.</li>

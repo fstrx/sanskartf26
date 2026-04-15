@@ -55,16 +55,16 @@ export default function Understanding() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportConfig}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="grid gap-8 rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(11,14,30,0.85),rgba(5,7,18,0.92))] p-5 backdrop-blur-xl lg:grid-cols-[1.05fr_1.15fr] lg:p-7"
+          className="theme-surface-panel grid gap-8 rounded-[2rem] p-5 backdrop-blur-xl lg:grid-cols-[1.05fr_1.15fr] lg:p-7"
         >
-          <div className="flex flex-col justify-between rounded-[1.75rem] border border-white/10 bg-white/5 p-6 sm:p-8">
+          <div className="theme-surface-card flex flex-col justify-between rounded-[1.75rem] p-6 sm:p-8">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">Turning Point</p>
               <h3 className="font-display mt-4 text-3xl text-white sm:text-4xl">{activeStep.title}</h3>
               <p className="mt-4 text-base leading-relaxed text-slate-300">{activeStep.description}</p>
 
               {activeStep.quote && (
-                <blockquote className="mt-6 rounded-2xl border border-white/8 bg-slate-950/45 p-5 text-slate-200">
+                <blockquote className="theme-surface-overlay mt-6 rounded-2xl p-5 text-slate-200">
                   <p className="text-lg italic leading-relaxed">&ldquo;{activeStep.quote}&rdquo;</p>
                   {activeStep.author && <footer className="mt-3 text-sm text-slate-400">{activeStep.author}</footer>}
                 </blockquote>
@@ -80,8 +80,8 @@ export default function Understanding() {
                     className={`max-w-full break-words rounded-2xl border px-3 py-2 text-xs font-semibold whitespace-normal text-pretty ${
                       index === activeIndex
                         ? 'border-cyan-300/35 bg-cyan-400/10 text-cyan-100'
-                        : 'border-white/10 bg-white/5 text-slate-300'
-                    }`}
+                        : 'theme-surface-card text-slate-300'
+                     }`}
                   >
                     {practice}
                   </span>
@@ -98,7 +98,7 @@ export default function Understanding() {
                 onSelect={setActiveIndex}
               />
 
-              <div className="pointer-events-none absolute left-4 top-4 rounded-full border border-white/10 bg-slate-950/65 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-200 backdrop-blur-md sm:left-6 sm:top-6">
+              <div className="theme-surface-overlay pointer-events-none absolute left-4 top-4 rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-200 backdrop-blur-md sm:left-6 sm:top-6">
                 Tap or hover the network
               </div>
             </div>
@@ -115,8 +115,8 @@ export default function Understanding() {
                     className={`rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
                       isActive
                         ? 'border-cyan-300/35 bg-cyan-400/10 text-white shadow-[0_0_30px_rgba(34,211,238,0.12)]'
-                        : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/20 hover:text-white'
-                    }`}
+                        : 'theme-surface-card text-slate-300 hover:border-white/20 hover:text-white'
+                     }`}
                   >
                     <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">Step {step.step}</p>
                     <p className="mt-2 text-sm font-semibold leading-snug">{step.title}</p>

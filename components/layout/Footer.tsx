@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, viewportConfig } from "@/lib/animations";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 // GitHub SVG icon
 function GitHubIcon() {
@@ -17,25 +18,22 @@ function GitHubIcon() {
   );
 }
 
-// Twitter/X SVG icon
-function XIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className="w-5 h-5"
-      aria-hidden="true"
-    >
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.736l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
 export default function Footer() {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
+
   return (
-    <footer className="relative bg-[#050208] border-t border-white/5 overflow-hidden">
+    <footer
+      className={`relative overflow-hidden border-t ${
+        isLight ? "border-slate-900/8 bg-[#edf1f6]" : "border-white/5 bg-[#050208]"
+      }`}
+    >
       {/* Top ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-32 rounded-full bg-violet-900/10 blur-3xl pointer-events-none" />
+      <div
+        className={`pointer-events-none absolute top-0 left-1/2 h-32 w-[500px] -translate-x-1/2 rounded-full blur-3xl ${
+          isLight ? "bg-sky-300/20" : "bg-violet-900/10"
+        }`}
+      />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div
@@ -47,10 +45,10 @@ export default function Footer() {
         >
           {/* Logo & tagline */}
           <motion.div variants={fadeUp} className="text-center">
-            <p className="text-2xl font-black text-white tracking-wide mb-1">
+            <p className={`mb-1 text-2xl font-black tracking-wide ${isLight ? "text-slate-950" : "text-white"}`}>
               🌍 Peace &amp; Global Harmony
             </p>
-            <p className="text-slate-400 text-sm">
+            <p className={`text-sm ${isLight ? "text-slate-600" : "text-slate-400"}`}>
               An interactive web experience
             </p>
           </motion.div>
@@ -58,15 +56,21 @@ export default function Footer() {
           {/* Divider */}
           <motion.div
             variants={fadeUp}
-            className="w-24 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+            className={`h-px w-24 bg-gradient-to-r from-transparent ${
+              isLight ? "via-slate-900/16" : "via-white/20"
+            } to-transparent`}
           />
 
           {/* Social icons (decorative) */}
           <motion.div variants={fadeUp} className="flex items-center gap-4">
             <a
-              href="https://github.com/fstrx/sanskartf26.vercel."
+              href="https://github.com/fstrx/sanskartf26.vercel"
               aria-label="GitHub"
-              className="text-slate-500 hover:text-white transition-colors duration-200"
+              className={`rounded-full border p-3 transition-colors duration-200 ${
+                isLight
+                  ? "border-slate-900/10 bg-white/78 text-slate-600 hover:text-slate-950"
+                  : "border-white/10 bg-white/5 text-slate-500 hover:text-white"
+              }`}
             >
               <GitHubIcon />
             </a>
@@ -75,7 +79,7 @@ export default function Footer() {
           {/* Copyright */}
           <motion.p
             variants={fadeUp}
-            className="text-slate-600 text-xs text-center"
+            className={`text-center text-xs ${isLight ? "text-slate-500" : "text-slate-600"}`}
           >
             &copy; 2026 DPSK Headways Club. All rights reserved.
           </motion.p>
