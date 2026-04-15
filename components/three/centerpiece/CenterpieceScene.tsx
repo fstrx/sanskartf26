@@ -81,11 +81,27 @@ function CenterpieceRig({
   useFrame(({ camera }, delta) => {
     const pointer = pointerRef.current
     const harmony = harmonyRef.current
+    const finalReveal = THREE.MathUtils.smoothstep(harmony, 0.82, 0.995)
+    const pointerWeight = 1 - finalReveal * 0.82
+    const targetFov = THREE.MathUtils.lerp(35, 41, finalReveal)
+    const perspectiveCamera = camera as THREE.PerspectiveCamera
 
-    camera.position.x = THREE.MathUtils.damp(camera.position.x, pointer.x * 0.42, 5.5, delta)
-    camera.position.y = THREE.MathUtils.damp(camera.position.y, pointer.y * 0.26, 5.5, delta)
-    camera.position.z = THREE.MathUtils.damp(camera.position.z, 8.4 - harmony * 0.5, 4.5, delta)
-    camera.lookAt(0, 0, 0)
+    camera.position.x = THREE.MathUtils.damp(camera.position.x, pointer.x * 0.42 * pointerWeight, 5.5, delta)
+    camera.position.y = THREE.MathUtils.damp(
+      camera.position.y,
+      pointer.y * 0.26 * pointerWeight + finalReveal * 0.14,
+      5.5,
+      delta,
+    )
+    camera.position.z = THREE.MathUtils.damp(
+      camera.position.z,
+      8.4 - harmony * 0.5 + finalReveal * 2.9,
+      4.2,
+      delta,
+    )
+    perspectiveCamera.fov = THREE.MathUtils.damp(perspectiveCamera.fov, targetFov, 4.2, delta)
+    perspectiveCamera.updateProjectionMatrix()
+    camera.lookAt(0, finalReveal * 0.08, 0)
   })
 
   return null

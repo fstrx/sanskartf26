@@ -38,7 +38,7 @@ const storyStages = [
 ] as const
 
 const desktopSlideCount = storyStages.length + 1
-const DESKTOP_STAGE_STEP = 72
+const DESKTOP_STAGE_STEP = 48
 
 function clamp(value: number, min = 0, max = 1) {
   return Math.min(max, Math.max(min, value))
@@ -60,8 +60,9 @@ export default function Interactive() {
 
   const highlightedMessage = peaceMessages[Math.min(peaceMessages.length - 1, Math.floor(harmonyProgress * (peaceMessages.length - 1)))]
   const activeStageIndex = Math.min(storyStages.length - 1, Math.floor(harmonyProgress * storyStages.length))
-  const desktopPanelShift = harmonyProgress * storyStages.length * 100
+  const desktopPanelShift = harmonyProgress * (desktopSlideCount - 1) * 100
   const desktopStageHeight = `calc(100svh + ${(desktopSlideCount - 1) * DESKTOP_STAGE_STEP}svh)`
+  const endingReveal = getPanelProgress(harmonyProgress, 0.82, 1)
 
   const panelStates = useMemo(
     () => [
@@ -70,6 +71,34 @@ export default function Interactive() {
       getPanelProgress(harmonyProgress, 0.62, 1),
     ],
     [harmonyProgress]
+  )
+
+  const renderEndingContent = (className = '') => (
+    <div className={className}>
+      <div className="mx-auto mb-6 flex max-w-4xl flex-wrap justify-center gap-3">
+        {interactivePrompts.map((prompt) => (
+          <div key={prompt} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 backdrop-blur-md">
+            {prompt}
+          </div>
+        ))}
+      </div>
+
+      <motion.p
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        className="text-base text-slate-300"
+      >
+        Peace becomes real when people participate in it.{' '}
+        <a
+          href="#cta"
+          className="text-violet-300 underline underline-offset-4 transition-colors duration-200 hover:text-violet-200"
+        >
+          Contribute your own message or suggestion.
+        </a>
+      </motion.p>
+    </div>
   )
 
   return (
@@ -108,10 +137,7 @@ export default function Interactive() {
         </motion.div>
       </div>
 
-      <div
-        ref={stageRef}
-        className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
-      >
+      <div ref={stageRef} className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="lg:hidden">
           <div className="w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(4,10,22,0.92),rgba(2,7,18,0.9))] backdrop-blur-xl">
             <div className="grid gap-6 p-5 lg:p-6">
@@ -203,119 +229,102 @@ export default function Interactive() {
         </div>
 
         <div className="hidden lg:block" style={{ height: desktopStageHeight }}>
-          <div className="lg:sticky lg:top-6 lg:flex lg:h-[calc(100svh-3rem)] lg:items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportConfig}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(4,10,22,0.92),rgba(2,7,18,0.9))] backdrop-blur-xl lg:h-[calc(100svh-3rem)]"
-          >
-            <div className="grid gap-6 p-5 lg:h-full lg:grid-cols-[1.2fr_0.8fr] lg:p-6">
-              <div className="relative min-h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem] lg:h-full lg:min-h-0">
-                <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
+          <div className="lg:sticky lg:top-6 lg:flex lg:min-h-[calc(100svh-3rem)] lg:flex-col lg:justify-center lg:gap-5 lg:py-3">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportConfig}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(145deg,rgba(4,10,22,0.92),rgba(2,7,18,0.9))] backdrop-blur-xl lg:h-[calc(100svh-12rem)]"
+            >
+              <div className="grid gap-6 p-5 lg:h-full lg:grid-cols-[1.2fr_0.8fr] lg:p-6">
+                <div className="relative min-h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem] lg:h-full lg:min-h-0">
+                  <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
 
-                <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
-                  <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
-                    Move to {forceMode}
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
-                    Click for ripple
-                  </span>
+                  <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
+                    <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                      Move to {forceMode}
+                    </span>
+                    <span className="rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                      Click for ripple
+                    </span>
+                  </div>
+
+                  <div className="pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-slate-950/65 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
+                    <div className="flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-300">
+                      <span>{storyStages[activeStageIndex].label}</span>
+                      <span>{Math.round(harmonyProgress * 100)}%</span>
+                    </div>
+                    <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/8">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-violet-400 via-cyan-300 to-emerald-300 transition-[width] duration-300"
+                        style={{ width: `${Math.max(8, harmonyProgress * 100)}%` }}
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl border border-white/10 bg-slate-950/65 p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
-                  <div className="flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-300">
-                    <span>{storyStages[activeStageIndex].label}</span>
-                    <span>{Math.round(harmonyProgress * 100)}%</span>
-                  </div>
-                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/8">
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-violet-400 via-cyan-300 to-emerald-300 transition-[width] duration-300"
-                      style={{ width: `${Math.max(8, harmonyProgress * 100)}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
+                <div className="hidden lg:block">
+                  <div className="relative h-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5">
+                    <motion.div
+                      animate={{ y: `-${desktopPanelShift}%` }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                      className="flex h-full flex-col"
+                    >
+                      {storyStages.map((stage, index) => (
+                        <div key={stage.label} className="flex h-full min-h-0 shrink-0 flex-col justify-center p-8">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">{stage.label}</p>
+                          <h3 className="mt-4 text-3xl font-bold text-white">{stage.title}</h3>
+                          <p className="mt-4 max-w-md text-base leading-relaxed text-slate-300">{stage.body}</p>
 
-              <div className="hidden lg:block">
-                <div className="relative h-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5">
-                  <motion.div
-                    animate={{ y: `-${desktopPanelShift}%` }}
-                    transition={{ duration: 0.35, ease: 'easeOut' }}
-                    className="flex h-full flex-col"
-                  >
-                    {storyStages.map((stage, index) => (
-                      <div key={stage.label} className="flex h-full min-h-0 shrink-0 flex-col justify-center p-8">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">{stage.label}</p>
-                        <h3 className="mt-4 text-3xl font-bold text-white">{stage.title}</h3>
-                        <p className="mt-4 max-w-md text-base leading-relaxed text-slate-300">{stage.body}</p>
+                          <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/8">
+                            <div
+                              className="h-full rounded-full bg-gradient-to-r from-violet-400 via-cyan-300 to-emerald-300 transition-[width] duration-300"
+                              style={{ width: `${Math.max(8, panelStates[index] * 100)}%` }}
+                            />
+                          </div>
+                        </div>
+                      ))}
 
-                        <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/8">
-                          <div
-                            className="h-full rounded-full bg-gradient-to-r from-violet-400 via-cyan-300 to-emerald-300 transition-[width] duration-300"
-                            style={{ width: `${Math.max(8, panelStates[index] * 100)}%` }}
-                          />
+                      <div className="flex h-full min-h-0 shrink-0 flex-col justify-center gap-5 p-6 xl:p-8">
+                        <div className="rounded-[1.75rem] border border-white/10 bg-slate-950/45 p-5 xl:p-6">
+                          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Message in focus</p>
+                          <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
+                            {highlightedMessage.theme}
+                          </span>
+                          <p className="mt-4 text-xl font-semibold leading-relaxed text-white">{highlightedMessage.text}</p>
+                          <p className="mt-3 text-sm text-slate-400">{highlightedMessage.origin}</p>
+                        </div>
+
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          {peaceMessages.slice(0, 4).map((message) => (
+                            <div
+                              key={message.text}
+                              className={`rounded-2xl border p-4 text-sm leading-relaxed backdrop-blur-md ${themeAccents[message.theme]}`}
+                            >
+                              <p className="font-medium">{message.text}</p>
+                              <p className="mt-2 text-xs uppercase tracking-[0.22em] text-white/55">{message.origin}</p>
+                            </div>
+                          ))}
                         </div>
                       </div>
-                    ))}
-
-                    <div className="flex h-full min-h-0 shrink-0 flex-col justify-center gap-5 p-6 xl:p-8">
-                      <div className="rounded-[1.75rem] border border-white/10 bg-slate-950/45 p-5 xl:p-6">
-                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Message in focus</p>
-                        <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
-                          {highlightedMessage.theme}
-                        </span>
-                        <p className="mt-4 text-xl font-semibold leading-relaxed text-white">{highlightedMessage.text}</p>
-                        <p className="mt-3 text-sm text-slate-400">{highlightedMessage.origin}</p>
-                      </div>
-
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        {peaceMessages.slice(0, 4).map((message) => (
-                          <div
-                            key={message.text}
-                            className={`rounded-2xl border p-4 text-sm leading-relaxed backdrop-blur-md ${themeAccents[message.theme]}`}
-                          >
-                            <p className="font-medium">{message.text}</p>
-                            <p className="mt-2 text-xs uppercase tracking-[0.22em] text-white/55">{message.origin}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+            <motion.div
+              animate={{ opacity: endingReveal, y: 28 - endingReveal * 28 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="hidden lg:block"
+            >
+              {renderEndingContent('mx-auto max-w-5xl px-4 text-center')}
+            </motion.div>
           </div>
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto mt-10 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        <div className="mx-auto mb-6 flex max-w-4xl flex-wrap justify-center gap-3">
-          {interactivePrompts.map((prompt) => (
-            <div key={prompt} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200 backdrop-blur-md">
-              {prompt}
-            </div>
-          ))}
-        </div>
-
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          className="text-base text-slate-300"
-        >
-          Peace becomes real when people participate in it.{' '}
-          <a
-            href="#cta"
-            className="text-violet-300 underline underline-offset-4 transition-colors duration-200 hover:text-violet-200"
-          >
-            Contribute your own message or suggestion.
-          </a>
-        </motion.p>
-      </div>
+      {renderEndingContent('relative z-10 mx-auto mt-8 max-w-7xl px-4 text-center sm:px-6 lg:hidden lg:px-8')}
     </SectionWrapper>
   )
 }

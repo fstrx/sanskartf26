@@ -61,36 +61,14 @@ export default function Footer() {
             className="w-24 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
           />
 
-          {/* Made with love */}
-          <motion.p
-            variants={fadeUp}
-            className="text-slate-400 text-sm text-center"
-          >
-            Made with{" "}
-            <span className="text-red-400 inline-block hover:scale-125 transition-transform duration-200 cursor-default">
-              ❤️
-            </span>{" "}
-            for a better world
-          </motion.p>
-
           {/* Social icons (decorative) */}
-          <motion.div
-            variants={fadeUp}
-            className="flex items-center gap-4"
-          >
+          <motion.div variants={fadeUp} className="flex items-center gap-4">
             <a
-              href="#"
+              href="https://github.com/fstrx/sanskartf26.vercel."
               aria-label="GitHub"
               className="text-slate-500 hover:text-white transition-colors duration-200"
             >
               <GitHubIcon />
-            </a>
-            <a
-              href="#"
-              aria-label="X / Twitter"
-              className="text-slate-500 hover:text-white transition-colors duration-200"
-            >
-              <XIcon />
             </a>
           </motion.div>
 
@@ -99,7 +77,7 @@ export default function Footer() {
             variants={fadeUp}
             className="text-slate-600 text-xs text-center"
           >
-            &copy; 2026 Peace &amp; Global Harmony. All rights reserved.
+            &copy; 2026 DPSK Headways Club. All rights reserved.
           </motion.p>
         </motion.div>
       </div>
