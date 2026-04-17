@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useMemo, useRef, useState } from 'react'
-import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { interactivePrompts, peaceMessages } from '@/lib/content'
 import { fadeUp, staggerContainer, viewportConfig } from '@/lib/animations'
 import SectionWrapper from '@/components/ui/SectionWrapper'
@@ -60,8 +60,8 @@ export default function Interactive() {
 
   const highlightedMessage = peaceMessages[Math.min(peaceMessages.length - 1, Math.floor(harmonyProgress * (peaceMessages.length - 1)))]
   const activeStageIndex = Math.min(storyStages.length - 1, Math.floor(harmonyProgress * storyStages.length))
-  const desktopPanelShift = harmonyProgress * (((desktopSlideCount - 1) / desktopSlideCount) * 100)
   const desktopStageHeight = `calc(100svh + ${(desktopSlideCount - 1) * DESKTOP_STAGE_STEP}svh)`
+  const activeDesktopSlide = Math.min(desktopSlideCount - 1, Math.floor(harmonyProgress * desktopSlideCount))
 
   const panelStates = useMemo(
     () => [
@@ -71,6 +71,94 @@ export default function Interactive() {
     ],
     [harmonyProgress]
   )
+
+  const desktopSlides = useMemo(
+    () => [
+      ...storyStages.map((stage, index) => ({ kind: 'stage' as const, stage, index })),
+      { kind: 'message' as const },
+      { kind: 'ending' as const },
+    ],
+    []
+  )
+
+  const activeDesktopPanel = desktopSlides[activeDesktopSlide] ?? desktopSlides[desktopSlides.length - 1]
+
+  function renderDesktopPanel() {
+    if (activeDesktopPanel.kind === 'stage') {
+      const { stage, index } = activeDesktopPanel
+
+      return (
+        <motion.div
+          key={stage.label}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="flex h-full flex-col justify-center p-10"
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">{stage.label}</p>
+          <h3 className="mt-4 text-3xl font-bold text-white">{stage.title}</h3>
+          <p className="mt-5 max-w-lg text-base leading-8 text-slate-300">{stage.body}</p>
+
+          <div className="mt-10 h-2 overflow-hidden rounded-full bg-white/8">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-violet-400 via-cyan-300 to-emerald-300 transition-[width] duration-300"
+              style={{ width: `${Math.max(8, panelStates[index] * 100)}%` }}
+            />
+          </div>
+        </motion.div>
+      )
+    }
+
+    if (activeDesktopPanel.kind === 'message') {
+      return (
+        <motion.div
+          key="message"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="flex h-full flex-col justify-center gap-6 p-8 xl:p-10"
+        >
+          <div className="theme-surface-overlay rounded-[2rem] p-6 xl:p-7">
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Message in focus</p>
+            <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
+              {highlightedMessage.theme}
+            </span>
+            <p className="mt-4 text-xl font-semibold leading-relaxed text-white">{highlightedMessage.text}</p>
+            <p className="mt-3 text-sm text-slate-400">{highlightedMessage.origin}</p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {peaceMessages.slice(0, 4).map((message) => (
+              <div
+                key={message.text}
+                className={`rounded-2xl border p-4 text-sm leading-relaxed backdrop-blur-md ${themeAccents[message.theme]}`}
+              >
+                <p className="font-medium">{message.text}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.22em] text-white/55">{message.origin}</p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )
+    }
+
+    return (
+      <motion.div
+        key="ending"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="flex h-full flex-col justify-center p-10 xl:p-12"
+      >
+        <div className="theme-surface-overlay rounded-[2rem] p-8 xl:p-10">
+          {renderEndingContent('mx-auto max-w-4xl text-center')}
+        </div>
+      </motion.div>
+    )
+  }
 
   const renderEndingContent = (className = '') => (
     <div className={className}>
@@ -265,55 +353,7 @@ export default function Interactive() {
 
                 <div className="hidden lg:block">
                   <div className="theme-surface-card relative h-full overflow-hidden rounded-[2rem]">
-                    <motion.div
-                      animate={{ y: `-${desktopPanelShift}%` }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
-                      className="flex h-full flex-col"
-                    >
-                      {storyStages.map((stage, index) => (
-                        <div key={stage.label} className="flex h-full min-h-0 shrink-0 flex-col justify-center p-10">
-                          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">{stage.label}</p>
-                          <h3 className="mt-4 text-3xl font-bold text-white">{stage.title}</h3>
-                          <p className="mt-5 max-w-lg text-base leading-8 text-slate-300">{stage.body}</p>
-
-                          <div className="mt-10 h-2 overflow-hidden rounded-full bg-white/8">
-                            <div
-                              className="h-full rounded-full bg-gradient-to-r from-violet-400 via-cyan-300 to-emerald-300 transition-[width] duration-300"
-                              style={{ width: `${Math.max(8, panelStates[index] * 100)}%` }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-
-                      <div className="flex h-full min-h-0 shrink-0 flex-col justify-center gap-6 p-8 xl:p-10">
-                        <div className="theme-surface-overlay rounded-[2rem] p-6 xl:p-7">
-                          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Message in focus</p>
-                          <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
-                            {highlightedMessage.theme}
-                          </span>
-                          <p className="mt-4 text-xl font-semibold leading-relaxed text-white">{highlightedMessage.text}</p>
-                          <p className="mt-3 text-sm text-slate-400">{highlightedMessage.origin}</p>
-                        </div>
-
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          {peaceMessages.slice(0, 4).map((message) => (
-                            <div
-                              key={message.text}
-                              className={`rounded-2xl border p-4 text-sm leading-relaxed backdrop-blur-md ${themeAccents[message.theme]}`}
-                            >
-                              <p className="font-medium">{message.text}</p>
-                              <p className="mt-2 text-xs uppercase tracking-[0.22em] text-white/55">{message.origin}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="flex h-full min-h-0 shrink-0 flex-col justify-center p-10 xl:p-12">
-                        <div className="theme-surface-overlay rounded-[2rem] p-8 xl:p-10">
-                          {renderEndingContent('mx-auto max-w-4xl text-center')}
-                        </div>
-                      </div>
-                    </motion.div>
+                    <AnimatePresence mode="wait">{renderDesktopPanel()}</AnimatePresence>
                   </div>
                 </div>
               </div>

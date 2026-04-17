@@ -1,7 +1,7 @@
 'use client'
 
 import type { MutableRefObject } from 'react'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import SceneCanvas from '@/components/three/core/SceneCanvas'
@@ -28,6 +28,39 @@ function seedNoise(seed: number) {
   return value - Math.floor(value)
 }
 
+function createOrbGradientTexture() {
+  const size = 128
+  const canvas = document.createElement('canvas')
+  canvas.width = size
+  canvas.height = size
+
+  const context = canvas.getContext('2d')
+  if (!context) {
+    return null
+  }
+
+  const gradient = context.createRadialGradient(
+    size * 0.5,
+    size * 0.5,
+    size * 0.08,
+    size * 0.5,
+    size * 0.5,
+    size * 0.5,
+  )
+  gradient.addColorStop(0, 'rgba(255, 255, 255, 1)')
+  gradient.addColorStop(0.35, 'rgba(190, 235, 255, 0.7)')
+  gradient.addColorStop(0.7, 'rgba(125, 211, 252, 0.2)')
+  gradient.addColorStop(1, 'rgba(125, 211, 252, 0)')
+
+  context.fillStyle = gradient
+  context.fillRect(0, 0, size, size)
+
+  const texture = new THREE.CanvasTexture(canvas)
+  texture.colorSpace = THREE.SRGBColorSpace
+
+  return texture
+}
+
 function CameraRig({ pointerRef, convergenceRef }: {
   pointerRef: MutableRefObject<PointerState>
   convergenceRef: MutableRefObject<number>
@@ -48,31 +81,59 @@ function CameraRig({ pointerRef, convergenceRef }: {
 function UnityCore({ convergenceRef }: { convergenceRef: MutableRefObject<number> }) {
   const meshRef = useRef<THREE.Mesh>(null)
   const materialRef = useRef<THREE.MeshBasicMaterial>(null)
+  const glowRef = useRef<THREE.Sprite>(null)
+  const glowMaterialRef = useRef<THREE.SpriteMaterial>(null)
+  const glowTexture = useMemo(() => createOrbGradientTexture(), [])
+
+  useEffect(() => {
+    return () => {
+      glowTexture?.dispose()
+    }
+  }, [glowTexture])
 
   useFrame(({ clock }) => {
-    if (!meshRef.current || !materialRef.current) {
+    if (!meshRef.current || !materialRef.current || !glowRef.current || !glowMaterialRef.current) {
       return
     }
 
     const pulse = 0.92 + Math.sin(clock.getElapsedTime() * 1.8) * 0.03
     const converge = convergenceRef.current
+    const coreScale = pulse + converge * 0.35
+    const glowScale = 1.5 + Math.sin(clock.getElapsedTime() * 1.2) * 0.04 + converge * 0.55
 
-    meshRef.current.scale.setScalar(pulse + converge * 0.35)
-    materialRef.current.opacity = 0.1 + converge * 0.22
+    meshRef.current.scale.setScalar(coreScale)
+    materialRef.current.opacity = 0.14 + converge * 0.16
+    glowRef.current.scale.set(glowScale, glowScale, 1)
+    glowMaterialRef.current.opacity = 0.32 + converge * 0.18
   })
 
   return (
-    <mesh ref={meshRef}>
-      <sphereGeometry args={[0.38, 32, 32]} />
-      <meshBasicMaterial
-        ref={materialRef}
-        color="#7dd3fc"
-        transparent
-        opacity={0.12}
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-      />
-    </mesh>
+    <group>
+      {glowTexture ? (
+        <sprite ref={glowRef} scale={[1.5, 1.5, 1]}>
+          <spriteMaterial
+            ref={glowMaterialRef}
+            map={glowTexture}
+            color="#7dd3fc"
+            transparent
+            opacity={0.32}
+            blending={THREE.AdditiveBlending}
+            depthWrite={false}
+          />
+        </sprite>
+      ) : null}
+      <mesh ref={meshRef}>
+        <sphereGeometry args={[0.28, 24, 24]} />
+        <meshBasicMaterial
+          ref={materialRef}
+          color="#bfefff"
+          transparent
+          opacity={0.14}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+    </group>
   )
 }
 

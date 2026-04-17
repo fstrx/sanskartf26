@@ -8,9 +8,7 @@ import Button from '@/components/ui/Button'
 
 const HeroScene = dynamic(() => import('@/components/three/hero/HeroScene'), {
   ssr: false,
-  loading: () => (
-    <div className="absolute inset-0 bg-gradient-to-br from-[#0d0010] via-[#020818] to-[#03131d]" />
-  ),
+  loading: () => <div className="theme-hero-fallback absolute inset-0" />,
 })
 
 const fadeUp = {
@@ -92,12 +90,12 @@ export default function Hero() {
         <HeroScene pointerRef={pointerRef} pulseRef={pulseRef} convergenceRef={convergenceRef} />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_center,transparent_18%,rgba(3,5,12,0.5)_62%,rgba(3,5,12,0.9)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 bg-gradient-to-b from-transparent to-[#0d0208]" />
+      <div className="theme-hero-overlay pointer-events-none absolute inset-0 z-10" />
+      <div className="theme-hero-bottom-fade pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40" />
 
       <div className="relative z-20 mx-auto flex w-full max-w-7xl flex-col items-center px-6 pt-28 pb-20 text-center sm:px-8 lg:pt-32">
         <motion.p
-          className="eyebrow-label mb-8 text-xs font-semibold text-cyan-100/60"
+          className="hero-eyebrow eyebrow-label theme-surface-overlay mb-8 rounded-full px-4 py-2 text-xs font-semibold text-cyan-50/85 backdrop-blur-md"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -111,16 +109,17 @@ export default function Hero() {
           initial="hidden"
           animate="visible"
           custom={0.5}
-          className="max-w-5xl"
+          className="relative max-w-5xl"
         >
-          <h1 className="font-display text-5xl leading-[0.9] tracking-tight text-white sm:text-6xl md:text-7xl xl:text-[8rem]">
+          <div className="pointer-events-none absolute inset-x-6 top-1/2 -z-10 h-28 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(8,14,28,0.8)_0%,rgba(8,14,28,0.38)_58%,transparent_100%)] blur-3xl sm:h-36 xl:h-44" />
+          <h1 className="hero-headline font-display text-5xl leading-[0.9] tracking-tight text-white sm:text-6xl md:text-7xl xl:text-[8rem]">
             <span className="block whitespace-nowrap">Peace and</span>
             <span className="block whitespace-nowrap">Global Harmony</span>
           </h1>
         </motion.div>
 
         <motion.p
-          className="mt-10 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg"
+          className="hero-copy mt-8 max-w-2xl text-base leading-8 text-slate-200 sm:mt-9 sm:text-lg"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
