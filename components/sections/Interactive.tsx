@@ -22,18 +22,18 @@ const themeAccents = {
 const storyStages = [
   {
     label: 'Phase 01',
-    title: 'Disorder resists contact',
-    body: 'At first the field pushes back. Move your cursor through it and feel how fragile systems react to pressure.',
+    title: 'Disorder Pushes Back',
+    body: 'The field resists contact, like conflict resists pressure without trust.',
   },
   {
     label: 'Phase 02',
-    title: 'Choice changes the force',
-    body: 'Click to switch from repelling to attracting. The same hand that disrupts can also begin to gather.',
+    title: 'Choice Changes Force',
+    body: 'One click turns disruption into attraction.',
   },
   {
     label: 'Phase 03',
-    title: 'Harmony becomes visible',
-    body: 'Keep scrolling and the field aligns into a shared peace symbol, turning individual motion into collective form.',
+    title: 'Alignment Emerges',
+    body: 'What was scattered begins to form a shared symbol of peace.',
   },
 ] as const
 
@@ -90,12 +90,12 @@ export default function Interactive() {
         viewport={viewportConfig}
         className="text-base text-slate-300"
       >
-        Peace becomes real when people participate in it.{' '}
+        Peace becomes real when people practice it.{' '}
         <a
           href="#cta"
           className="text-violet-300 underline underline-offset-4 transition-colors duration-200 hover:text-violet-200"
         >
-          Contribute your own message or suggestion.
+          Add one message or one idea.
         </a>
       </motion.p>
     </div>
@@ -132,7 +132,7 @@ export default function Interactive() {
             </span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
-            Move through disorder, click to change the force you exert, and scroll through the stage until scattered particles align into a shared symbol of harmony.
+            One action can disturb a system or help align it.
           </motion.p>
         </motion.div>
       </div>

@@ -45,7 +45,7 @@ export default function Hero() {
           animate="visible"
           custom={0.3}
         >
-          A Journey from Chaos to Harmony
+          Peace, Examined Under Pressure
         </motion.p>
 
         <motion.div
@@ -68,8 +68,7 @@ export default function Hero() {
           animate="visible"
           custom={0.9}
         >
-          Trace how division takes hold, how understanding begins, and how shared human choices can
-          still bend the future toward peace.
+          Conflict spreads fast. Peace survives when people choose each other under pressure.
         </motion.p>
 
         <motion.div
@@ -96,15 +95,15 @@ export default function Hero() {
         >
           <div className="theme-surface-card rounded-[1.5rem] p-5 sm:p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-cyan-300/75">Move</p>
-            <p className="mt-2 text-sm text-slate-200">Shift the camera and bend the field around your cursor.</p>
+            <p className="mt-2 text-sm text-slate-200">Disturb the field. Feel how fragile order can be.</p>
           </div>
           <div className="theme-surface-card rounded-[1.5rem] p-5 sm:p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-violet-300/75">Click</p>
-            <p className="mt-2 text-sm text-slate-200">Pull the particles toward unity for a brief moment.</p>
+            <p className="mt-2 text-sm text-slate-200">Pull the system toward alignment, for a moment.</p>
           </div>
           <div className="theme-surface-card rounded-[1.5rem] p-5 sm:p-6">
-            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-300/75">Continue</p>
-            <p className="mt-2 text-sm text-slate-200">Follow the story from fracture, to repair, to participation.</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-300/75">Scroll</p>
+            <p className="mt-2 text-sm text-slate-200">Follow the shift from fracture to repair.</p>
           </div>
         </motion.div>
       </div>

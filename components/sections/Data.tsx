@@ -162,9 +162,7 @@ export default function Data() {
             variants={fadeUp}
             className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400"
           >
-            These figures reveal both the damage conflict causes and the
-            systems still working to contain it. The stakes are human, not
-            abstract.
+            These numbers make one point clear: conflict is costly, and peace is urgent.
           </motion.p>
         </motion.div>
 

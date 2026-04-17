@@ -97,7 +97,7 @@ export default function CTA() {
             variants={fadeUp}
             className="eyebrow-label mb-3 text-xs font-bold text-emerald-400"
           >
-            What Happens Next
+            Your Move
           </motion.p>
           <motion.h2
             variants={fadeUp}
@@ -106,8 +106,7 @@ export default function CTA() {
             Carry the <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">Story Forward</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-slate-300">
-            Peace grows when people choose to speak, suggest, and act where they are. Leave a peace
-            message, a critique, or an idea that could make this experience stronger.
+            Peace moves when people speak. Leave one message or one suggestion that makes this experience stronger.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-12 flex flex-col justify-center gap-4 sm:flex-row sm:gap-5">
@@ -133,10 +132,10 @@ export default function CTA() {
                 Prompt Bank
               </motion.p>
               <motion.h3 variants={fadeUp} className="font-display mt-4 text-2xl text-white sm:text-3xl">
-                Not sure what to write?
+                Need a starting point?
               </motion.h3>
               <motion.p variants={fadeUp} className="mt-5 text-sm leading-7 text-slate-300">
-                Choose one of these prompts to start. They are designed for both peace messages and design suggestions.
+                Use a prompt to add a peace message, a critique, or a concrete next step.
               </motion.p>
 
               <div className="mt-8 space-y-4">
@@ -155,9 +154,9 @@ export default function CTA() {
               <div className="theme-surface-overlay mt-10 rounded-[1.75rem] p-6">
                 <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">What we are asking for</p>
                 <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
-                  <li>One peace message you believe people need to hear.</li>
-                  <li>One suggestion that could make this experience more useful or more inclusive.</li>
-                  <li>One story, region, or data point we should explore next.</li>
+                  <li>One truth people need to hear.</li>
+                  <li>One idea that improves this experience.</li>
+                  <li>One story we should examine next.</li>
                 </ul>
               </div>
             </div>
@@ -167,7 +166,7 @@ export default function CTA() {
                 Share a Message or Suggestion
               </motion.h3>
               <motion.p variants={fadeUp} className="mt-4 text-sm leading-7 text-slate-400">
-                Send a peace message, reflection, or suggestion for what this experience should include next.
+                Send one message, one critique, or one next step.
               </motion.p>
 
               <AnimatePresence mode="wait">
@@ -183,9 +182,9 @@ export default function CTA() {
                     <div className="flex h-16 w-16 items-center justify-center rounded-full border border-emerald-400/35 bg-emerald-500/12 text-xl font-black text-emerald-200">
                       OK
                     </div>
-                    <h4 className="mt-6 text-2xl font-bold text-white">Your contribution has been received.</h4>
+                    <h4 className="mt-6 text-2xl font-bold text-white">Your contribution is in.</h4>
                     <p className="mt-3 max-w-md text-slate-300">
-                      Small acts of reflection still matter. This story moves forward because people add to it.
+                      Peace moves forward because people add to it.
                     </p>
                     <button
                       type="button"

@@ -43,99 +43,84 @@ export interface PeaceMessage {
 export const chaosContent: ContentCard[] = [
   {
     id: 1,
-    title: 'Nationalism and Tribalism',
-    description:
-      'Extreme identity politics turns belonging into exclusion, making neighbors feel like threats and difference feel like danger.',
+    title: 'Identity Turned Into Threat',
+    description: 'When belonging is weaponized, difference starts to feel dangerous.',
     icon: '🏴',
-    stat: '54 countries saw a rise in nationalist violence in 2023',
-    pathForward: 'Counter it with dialogue that protects identity without weaponizing it.',
+    stat: '54 countries saw rising nationalist violence in 2023.',
+    pathForward: 'Protect identity without letting it become exclusion.',
   },
   {
     id: 2,
-    title: 'Resource Scarcity',
-    description:
-      'Competition over water, land, food, and energy pushes fragile communities toward conflict, especially when climate pressure rises.',
+    title: 'Scarcity Under Stress',
+    description: 'Pressure over water, land, food, and energy can turn hardship into conflict.',
     icon: '💧',
-    stat: '40% of armed conflicts involve natural resource disputes',
-    pathForward: 'Counter it with cooperation that makes survival a shared project.',
+    stat: '40% of armed conflicts involve natural resources.',
+    pathForward: 'Share resources fairly before survival becomes zero-sum.',
   },
   {
     id: 3,
-    title: 'Historical Injustices',
-    description:
-      'Unresolved colonial borders, ethnic violence, and inherited trauma keep old wounds politically alive across generations.',
+    title: 'History Left Unrepaired',
+    description: 'Old borders and unhealed injustice keep returning as present-day instability.',
     icon: '⚖️',
-    stat: 'Over 80 ongoing territorial disputes are rooted in colonial borders',
-    pathForward: 'Counter it with truth, accountability, and visible repair.',
+    stat: '80+ territorial disputes trace back to colonial borders.',
+    pathForward: 'Truth, accountability, and repair break the cycle.',
   },
   {
     id: 4,
-    title: 'Misinformation',
-    description:
-      'Propaganda spreads faster than trust. False narratives simplify complex realities until empathy is replaced by fear.',
+    title: 'Lies at Scale',
+    description: 'When falsehood spreads faster than trust, fear starts making decisions.',
     icon: '📡',
-    stat: '3.6 billion people live in countries with severe information disorder',
-    pathForward: 'Counter it with education, media literacy, and patient listening.',
+    stat: '3.6B people live amid severe information disorder.',
+    pathForward: 'Strengthen literacy, credible institutions, and listening.',
   },
   {
     id: 5,
-    title: 'Economic Inequality',
-    description:
-      'When dignity feels unattainable, resentment grows. Vast wealth gaps turn exclusion into instability and instability into violence.',
+    title: 'Inequality That Hardens',
+    description: 'When dignity feels out of reach, resentment becomes combustible.',
     icon: '📊',
-    stat: 'The top 1% owns 45.6% of global wealth',
-    pathForward: 'Counter it with justice-oriented systems that widen opportunity.',
+    stat: 'The top 1% holds 45.6% of global wealth.',
+    pathForward: 'Widen access to opportunity, security, and voice.',
   },
   {
     id: 6,
-    title: 'Arms Proliferation',
-    description:
-      'A world saturated with weapons becomes a world where fear is always one decision away from devastation.',
+    title: 'A World Armed for Panic',
+    description: 'More weapons mean less distance between tension and tragedy.',
     icon: '🔫',
-    stat: '$2.2 trillion was spent globally on the military in 2023',
-    pathForward: 'Counter it with restraint, diplomacy, and shared security frameworks.',
+    stat: '$2.2T was spent on the military globally in 2023.',
+    pathForward: 'Choose restraint, diplomacy, and shared security.',
   },
 ]
 
 export const understandingSteps: Step[] = [
   {
     step: 1,
-    title: 'Open Communication',
-    description:
-      'Peace begins when people are willing to stay in the room. Dialogue does not erase disagreement, but it prevents silence from hardening into permanent distance.',
+    title: 'Talk First',
+    description: 'Dialogue keeps disagreement from hardening into division.',
     quote:
       'If you want to make peace with your enemy, you have to work with your enemy. Then he becomes your partner.',
     author: 'Nelson Mandela',
   },
   {
     step: 2,
-    title: 'Empathy and Perspective',
-    description:
-      'Empathy interrupts dehumanization. It lets us see pain, fear, and hope on the other side of a disagreement without pretending every side is identical.',
-    quote: 'You never really understand a person until you consider things from his point of view.',
-    author: 'Harper Lee',
+    title: 'See the Other Side',
+    description: 'Empathy breaks dehumanization and makes conflict harder to justify.',
   },
   {
     step: 3,
-    title: 'Education for Peace',
-    description:
-      'Critical thinking, conflict resolution, and shared history teach young people how to face difference without converting it into hostility.',
-    quote: 'Education is the most powerful weapon which you can use to change the world.',
-    author: 'Nelson Mandela',
+    title: 'Teach Peace',
+    description: 'Education helps people question hate and resolve tension early.',
   },
   {
     step: 4,
-    title: 'International Cooperation',
-    description:
-      'Lasting peace is rarely local only. It depends on institutions, trade, diplomacy, and common incentives that make cooperation stronger than escalation.',
+    title: 'Build Shared Systems',
+    description: 'Peace lasts longer when cooperation is reinforced by institutions and diplomacy.',
     quote: 'The United Nations was created not to bring us to heaven, but to save us from hell.',
     author: 'Dag Hammarskjold',
   },
   {
     step: 5,
-    title: 'Justice and Accountability',
-    description:
-      'Peace without repair is fragile. Accountability, truth-telling, and restitution help communities move from survival toward trust.',
+    title: 'Repair What Was Broken',
+    description: 'Justice, truth, and accountability make peace credible instead of temporary.',
     quote: 'Peace without justice is an illusion.',
     author: 'Pope Paul VI',
   },
@@ -145,77 +130,67 @@ export const globalRegions: Region[] = [
   {
     id: 'africa',
     name: 'Africa',
-    title: 'Ubuntu: I Am Because We Are',
-    description:
-      'From truth commissions to community courts, African peace-building often treats healing as something collective rather than merely legal.',
+    title: 'Ubuntu: Peace Through Shared Dignity',
+    description: 'Across Africa, peace-building often starts with collective healing, not punishment alone.',
     efforts: [
-      'African Union peace and mediation frameworks under Agenda 2063',
-      'Rwanda community reconciliation processes after genocide',
-      'Regional mediation in South Sudan through neighboring states and IGAD',
+      'African Union mediation and peace frameworks under Agenda 2063',
+      'Rwanda community reconciliation after genocide',
     ],
     flag: '🌍',
     color: '#f59e0b',
-    lesson: 'Peace can begin when communities rebuild dignity together, not one grievance at a time.',
+    lesson: 'Peace holds when dignity is rebuilt together.',
   },
   {
     id: 'asia',
     name: 'Asia',
-    title: 'From Friction to Connectivity',
-    description:
-      'Asia holds some of the world\'s most complex disputes, but it also shows how interdependence and citizen diplomacy can keep escalation from becoming destiny.',
+    title: 'Connection Over Escalation',
+    description: 'Asia shows how dialogue, trade, and civic ties can keep deep tension from becoming permanent conflict.',
     efforts: [
-      'ASEAN frameworks that prioritize stability and regional dialogue',
-      'Citizen diplomacy initiatives between India and Pakistan',
-      'Economic cooperation through APEC as a peace-supporting mechanism',
+      'ASEAN regional dialogue frameworks',
+      'Citizen diplomacy between India and Pakistan',
     ],
     flag: '🌏',
     color: '#06b6d4',
-    lesson: 'Peace can grow when connection becomes more valuable than victory.',
+    lesson: 'Peace grows when connection matters more than victory.',
   },
   {
     id: 'europe',
     name: 'Europe',
-    title: 'From Ashes to Union',
-    description:
-      'Europe demonstrates that former rivals can design institutions strong enough to outlast memory, fear, and repeated crisis.',
+    title: 'From Rivalry to Union',
+    description: 'Europe proves former enemies can build systems strong enough to outlast fear and memory.',
     efforts: [
-      'European integration as a peace project after two world wars',
-      'OSCE monitoring, diplomacy, and democratic institution support',
-      'Cross-border legal and economic systems that reduce incentives for war',
+      'European integration after two world wars',
+      'OSCE diplomacy and democratic monitoring',
     ],
     flag: '🌐',
     color: '#6366f1',
-    lesson: 'Peace endures longer when cooperation is built into everyday systems.',
+    lesson: 'Peace lasts when cooperation is built into daily life.',
   },
   {
     id: 'americas',
     name: 'Americas',
-    title: 'Reconciliation and New Beginnings',
-    description:
-      'Across the Americas, peace-building often centers on confronting historical harm while making room for Indigenous wisdom, transitional justice, and civic repair.',
+    title: 'Repairing the Past, Rebuilding Trust',
+    description: 'Across the Americas, peace-building often means naming harm honestly and rebuilding trust.',
     efforts: [
-      'Colombia\'s 2016 peace accord and its transitional justice mechanisms',
+      'Colombia’s 2016 peace accord and transitional justice',
       'Truth and reconciliation efforts with Indigenous communities in Canada',
-      'Regional human-rights monitoring through the Inter-American system',
     ],
     flag: '🌎',
     color: '#10b981',
-    lesson: 'Peace deepens when societies name harm honestly and still choose to move forward.',
+    lesson: 'Peace deepens when truth and forward motion exist together.',
   },
   {
     id: 'mideast',
     name: 'Middle East',
-    title: 'Seeds of Peace in Contested Ground',
-    description:
-      'In one of the world\'s most disputed regions, grassroots peace-builders keep proving that courage can survive even where politics repeatedly fails.',
+    title: 'Peace Kept Alive Between People',
+    description: 'Grassroots efforts here show courage can endure even when politics stalls.',
     efforts: [
-      'Seeds of Peace dialogue programs across conflict lines',
-      'Normalization initiatives that reopen diplomatic possibility',
-      'UN-mediated ceasefire and humanitarian negotiation efforts',
+      'Seeds of Peace dialogue across conflict lines',
+      'UN-mediated ceasefire and humanitarian negotiations',
     ],
     flag: '🕊️',
     color: '#f97316',
-    lesson: 'Peace often survives first as a practice between people before it becomes policy.',
+    lesson: 'Peace often survives in people before it reaches policy.',
   },
 ]
 
@@ -224,42 +199,42 @@ export const dataStats: Stat[] = [
     label: 'Armed Conflicts',
     value: 183,
     suffix: '',
-    description: 'Active armed conflicts recorded globally in 2023.',
+    description: 'Active armed conflicts recorded worldwide in 2023.',
     color: '#c0392b',
   },
   {
     label: 'People Displaced',
     value: 117,
     suffix: 'M',
-    description: 'Forcibly displaced people worldwide, a record high.',
+    description: 'People forcibly displaced worldwide, now at a record high.',
     color: '#e67e22',
   },
   {
     label: 'Cost of Violence',
     value: 17,
     suffix: 'T',
-    description: 'Estimated annual global economic impact of violence in USD.',
+    description: 'Estimated yearly global cost of violence in U.S. dollars.',
     color: '#8e44ad',
   },
   {
     label: 'UN Peacekeepers',
     value: 87,
     suffix: 'K+',
-    description: 'Personnel deployed across active UN peacekeeping operations.',
+    description: 'Personnel serving across active UN peacekeeping missions.',
     color: '#2980b9',
   },
   {
     label: 'Peace Agreements',
     value: 34,
     suffix: '',
-    description: 'Peace agreements signed globally in the last decade.',
+    description: 'Peace agreements signed globally over the last decade.',
     color: '#27ae60',
   },
   {
     label: 'Peacebuilding Orgs',
     value: 2400,
     suffix: '+',
-    description: 'Active civil-society peacebuilding organizations worldwide.',
+    description: 'Civil-society groups actively preventing conflict and rebuilding trust.',
     color: '#16a085',
   },
 ]
@@ -268,24 +243,17 @@ export const peaceMessages: PeaceMessage[] = [
   { text: 'Peace is a daily practice, not a destination.', theme: 'unity', origin: 'Global reflection' },
   { text: 'Shanti: peace as inner stillness and shared balance.', theme: 'unity', origin: 'Sanskrit' },
   { text: 'The world is my country, and all humankind are my kin.', theme: 'unity', origin: 'Stoic tradition' },
-  { text: 'Paz. Paix. Frieden. Mir. Peace sounds different and means the same hope.', theme: 'dialogue', origin: 'Many languages' },
   { text: 'You cannot shake hands with a clenched fist.', theme: 'dialogue', origin: 'Indira Gandhi' },
-  { text: 'Imagine all the people living life in peace.', theme: 'unity', origin: 'John Lennon' },
   { text: 'Where there is no justice, there can be no peace.', theme: 'justice', origin: 'Collective wisdom' },
-  { text: 'Peace begins with a smile.', theme: 'empathy', origin: 'Mother Teresa' },
-  { text: 'Salaam: peace as greeting, blessing, and belonging.', theme: 'dialogue', origin: 'Arabic' },
   { text: 'In diversity there is beauty and there is strength.', theme: 'empathy', origin: 'Maya Angelou' },
-  { text: 'Amani: peace carried through community.', theme: 'unity', origin: 'Swahili' },
-  { text: 'Every act of kindness is a stone dropped into the lake of peace.', theme: 'empathy', origin: 'Adapted reflection' },
   { text: 'We are more alike than we are unalike.', theme: 'empathy', origin: 'Maya Angelou' },
-  { text: 'Justice is the first condition of humanity.', theme: 'justice', origin: 'Wole Soyinka' },
   { text: 'Dialogue is how fear stops being the only voice in the room.', theme: 'dialogue', origin: 'Project note' },
 ]
 
 export const interactivePrompts = [
-  'Move through the field to feel division push back.',
-  'Click to switch from repelling to attracting the particles.',
-  'Scroll to watch chaos align into a shared symbol of peace.',
+  'Move through the field.',
+  'Click to change the force.',
+  'Scroll to watch alignment form.',
 ]
 
 export const suggestionCategories = [
@@ -298,9 +266,9 @@ export const suggestionCategories = [
 ]
 
 export const ctaPrompts = [
-  'What helps people listen across disagreement in your community?',
-  'What peace practice deserves more attention here?',
-  'What should this experience include next to make it more useful?',
+  'What is one truth people need to hear before peace becomes possible?',
+  'What change would make this experience more useful, credible, or inclusive?',
+  'Which conflict, community, or solution should this project examine next and why?',
 ]
 
 export const navLinks = [

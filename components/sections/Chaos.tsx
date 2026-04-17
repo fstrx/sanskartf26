@@ -44,8 +44,8 @@ export default function Chaos() {
             How Harmony <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">Unravels</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
-            Conflict rarely erupts from one cause. It grows through patterns that turn tension into fear,
-            fear into separation, and separation into violence.
+            Peace rarely breaks all at once. It fails through repeatable patterns: fear, scarcity, lies,
+            inequality, and force.
           </motion.p>
         </motion.div>
 
@@ -100,12 +100,12 @@ export default function Chaos() {
           className="mt-20 text-center"
         >
           <p className="text-lg text-slate-300">
-            If chaos is constructed, it can be unmade.{' '}
+            If conflict is built, it can be rebuilt into peace.{' '}
             <a
               href="#understanding"
               className="text-violet-300 underline underline-offset-4 transition-colors duration-200 hover:text-violet-200"
             >
-              See how peace gets rebuilt.
+              See what repair looks like.
             </a>
           </p>
         </motion.div>

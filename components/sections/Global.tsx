@@ -74,7 +74,7 @@ export default function Global() {
             </span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
-            No single culture owns peace-building. Scroll through each region to see how peace is practiced differently around the world.
+            Peace is built differently across regions, but everywhere it begins with people choosing repair over division.
           </motion.p>
         </motion.div>
       </div>

@@ -12,7 +12,7 @@ const UnderstandingScene = dynamic(() => import('@/components/three/understandin
   loading: () => <div className="absolute inset-0 rounded-[2rem] bg-[#060812]" />,
 })
 
-const quickPractices = ['Listen before reacting', 'Name shared stakes', 'Build trust in public', 'Protect dignity', 'Repair harm']
+const quickPractices = ['Talk first', 'See the other side', 'Teach peace', 'Build shared systems', 'Repair what was broken']
 
 export default function Understanding() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -45,8 +45,7 @@ export default function Understanding() {
             From Understanding to <span className="bg-gradient-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
-            Peace is not accidental. It grows through choices, habits, and institutions that rebuild trust
-            after fear has done its work.
+            Peace is not a slogan. It is a sequence of choices that turns tension into trust.
           </motion.p>
         </motion.div>
 
@@ -135,12 +134,12 @@ export default function Understanding() {
           className="mt-20 text-center"
         >
           <p className="text-lg text-slate-300">
-            The next step is participation.{' '}
+            Understanding matters only if it changes behavior.{' '}
             <a
               href="#interactive"
               className="text-indigo-300 underline underline-offset-4 transition-colors duration-200 hover:text-indigo-200"
             >
-              Take part in the story.
+              Test that idea yourself.
             </a>
           </p>
         </motion.div>
