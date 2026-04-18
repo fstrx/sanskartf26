@@ -190,7 +190,7 @@ export default function Interactive() {
 
   return (
     <SectionWrapper id="interactive" className="min-h-screen bg-[#010d1a] py-28 lg:py-32 !overflow-visible">
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-violet-900/12 blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-blue-900/12 blur-3xl" />
       </div>

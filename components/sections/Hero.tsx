@@ -113,8 +113,8 @@ export default function Hero() {
         >
           <div className="pointer-events-none absolute inset-x-6 top-1/2 -z-10 h-28 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(8,14,28,0.8)_0%,rgba(8,14,28,0.38)_58%,transparent_100%)] blur-3xl sm:h-36 xl:h-44" />
           <h1 className="hero-headline font-display text-5xl leading-[0.9] tracking-tight text-white sm:text-6xl md:text-7xl xl:text-[8rem]">
-            <span className="block whitespace-nowrap">Peace and</span>
-            <span className="block whitespace-nowrap">Global Harmony</span>
+            <span className="block sm:whitespace-nowrap">Peace and</span>
+            <span className="block sm:whitespace-nowrap">Global Harmony</span>
           </h1>
         </motion.div>
 
