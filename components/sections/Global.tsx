@@ -69,7 +69,7 @@ export default function Global() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            How the World Practices <span className="text-cyan-200">Repair</span>
+            How the World Practices <span className="font-display text-cyan-200">Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
             No region heals the same way, but each shows that repair becomes real when people keep choosing it.

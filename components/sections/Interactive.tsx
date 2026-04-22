@@ -213,7 +213,7 @@ export default function Interactive() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            A Field of <span className="text-cyan-200">Choices That Repair</span>
+            A Field of <span className="font-display text-cyan-200">Choices That Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             This is the hinge of the journey: one action can deepen fracture or begin repair.

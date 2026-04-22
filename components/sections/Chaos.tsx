@@ -42,7 +42,7 @@ export default function Chaos() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            The Moment Things <span className="text-red-300">Come Apart</span>
+            The Moment Things <span className="font-display text-red-300">Come Apart</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             Collapse has a pattern. Fear, scarcity, lies, inequality, and force turn pressure into fracture.

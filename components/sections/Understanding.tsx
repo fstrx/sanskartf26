@@ -42,7 +42,7 @@ export default function Understanding() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            The Work of <span className="text-cyan-200">Repair</span>
+            The Work of <span className="font-display text-cyan-200">Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             Repair starts when we recognize what fear has done and choose another way forward.

@@ -103,7 +103,7 @@ export default function CTA() {
             variants={fadeUp}
             className="font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl"
           >
-            Carry the <span className="text-emerald-200">Repair Forward</span>
+            Carry the <span className="font-display text-emerald-200">Repair Forward</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-slate-300">
             The journey ends with a choice. Leave one message or one suggestion that helps this work continue.
