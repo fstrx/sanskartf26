@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import { Cardo, Geist, Geist_Mono } from "next/font/google";
+import { Cardo, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -44,7 +39,7 @@ export default function RootLayout({
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${cardo.variable} h-full antialiased`}
+      className={`${geistMono.variable} ${cardo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground overflow-x-hidden">
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

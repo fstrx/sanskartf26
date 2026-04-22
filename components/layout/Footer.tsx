@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, viewportConfig } from "@/lib/animations";
 import { useTheme } from "@/components/theme/ThemeProvider";
+import Glyph from "@/components/ui/Glyph";
 
 // GitHub SVG icon
 function GitHubIcon() {
@@ -45,11 +46,16 @@ export default function Footer() {
         >
           {/* Logo & tagline */}
           <motion.div variants={fadeUp} className="text-center">
-            <p className={`mb-1 text-2xl font-black tracking-wide ${isLight ? "text-slate-950" : "text-white"}`}>
-              🌍 Peace &amp; Global Harmony
-            </p>
+            <div className="mb-3 flex items-center justify-center gap-3">
+              <span className={`flex h-10 w-10 items-center justify-center rounded-full border ${isLight ? "border-slate-900/10 bg-white/78 text-slate-950" : "border-white/10 bg-white/5 text-white"}`}>
+                <Glyph name="harmony" className="h-5 w-5" title="Peace and Global Harmony" />
+              </span>
+              <p className={`text-2xl font-semibold tracking-[0.02em] ${isLight ? "text-slate-950" : "text-white"}`}>
+                Peace &amp; Global Harmony
+              </p>
+            </div>
             <p className={`text-sm ${isLight ? "text-slate-600" : "text-slate-400"}`}>
-              An interactive web experience
+              An interactive experience in repair
             </p>
           </motion.div>
 

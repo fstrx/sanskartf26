@@ -174,7 +174,7 @@ export default function Hero() {
             Enter the Journey
           </Button>
           <Button href="#cta" variant="ghost" className="px-8 py-4 text-base">
-            Add Your Voice
+            Take Part
           </Button>
         </motion.div>
 
@@ -186,15 +186,15 @@ export default function Hero() {
           custom={1.35}
         >
           <div className="theme-surface-card rounded-[1.5rem] p-5 sm:p-6">
-            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-cyan-300/75">Move</p>
+            <p className="section-kicker text-[10px] font-medium text-cyan-300/75">Move</p>
             <p className="mt-2 text-sm text-slate-200">Disturb the field. Feel how quickly balance can slip.</p>
           </div>
           <div className="theme-surface-card rounded-[1.5rem] p-5 sm:p-6">
-            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-violet-300/75">Click</p>
+            <p className="section-kicker text-[10px] font-medium text-violet-300/75">Click</p>
             <p className="mt-2 text-sm text-slate-200">Change the pull. Notice how repair begins.</p>
           </div>
           <div className="theme-surface-card rounded-[1.5rem] p-5 sm:p-6">
-            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-emerald-300/75">Scroll</p>
+            <p className="section-kicker text-[10px] font-medium text-emerald-300/75">Scroll</p>
             <p className="mt-2 text-sm text-slate-200">Follow the path from fracture to contribution.</p>
           </div>
         </motion.div>
@@ -207,7 +207,7 @@ export default function Hero() {
         animate="visible"
         custom={1.55}
       >
-        <p className="text-[10px] uppercase tracking-[0.42em]">Scroll</p>
+        <p className="section-kicker text-[10px] font-medium">Scroll</p>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}

@@ -95,15 +95,15 @@ export default function CTA() {
         >
           <motion.p
             variants={fadeUp}
-            className="eyebrow-label mb-3 text-xs font-bold text-emerald-400"
+            className="eyebrow-label mb-3 text-xs font-medium text-emerald-400"
           >
-            Contribution
+            Final Step
           </motion.p>
           <motion.h2
             variants={fadeUp}
             className="font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl"
           >
-            Carry the <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">Repair Forward</span>
+            Carry the <span className="text-emerald-200">Repair Forward</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-slate-300">
             The journey ends with a choice. Leave one message or one suggestion that helps this work continue.
@@ -128,10 +128,10 @@ export default function CTA() {
         >
           <div className="grid gap-0 lg:grid-cols-[0.72fr_1fr]">
             <div className="border-b border-white/8 p-9 lg:border-b-0 lg:border-r lg:p-12">
-              <motion.p variants={fadeUp} className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">
+              <motion.p variants={fadeUp} className="section-kicker text-[10px] font-medium text-emerald-200/70">
                 Prompt Bank
               </motion.p>
-              <motion.h3 variants={fadeUp} className="font-display mt-4 text-2xl text-white sm:text-3xl">
+              <motion.h3 variants={fadeUp} className="premium-heading mt-4 text-2xl text-white sm:text-3xl">
                 Need a place to begin?
               </motion.h3>
               <motion.p variants={fadeUp} className="mt-5 text-sm leading-7 text-slate-300">
@@ -152,7 +152,7 @@ export default function CTA() {
               </div>
 
               <div className="theme-surface-overlay mt-10 rounded-[1.75rem] p-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">What we are asking for</p>
+                <p className="section-kicker text-[10px] font-medium text-cyan-200/70">What we are asking for</p>
                 <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
                   <li>One truth that should not be avoided.</li>
                   <li>One idea that makes this experience stronger.</li>
@@ -162,8 +162,8 @@ export default function CTA() {
             </div>
 
             <div className="p-9 lg:p-12">
-              <motion.h3 variants={fadeUp} className="font-display text-2xl text-white sm:text-3xl">
-                Add Your Voice
+              <motion.h3 variants={fadeUp} className="premium-heading text-2xl text-white sm:text-3xl">
+                Leave a Message
               </motion.h3>
               <motion.p variants={fadeUp} className="mt-4 text-sm leading-7 text-slate-400">
                 Send one message, one critique, or one next step for repair.
@@ -182,7 +182,7 @@ export default function CTA() {
                     <div className="flex h-16 w-16 items-center justify-center rounded-full border border-emerald-400/35 bg-emerald-500/12 text-xl font-black text-emerald-200">
                       OK
                     </div>
-                    <h4 className="mt-6 text-2xl font-bold text-white">Your contribution is in.</h4>
+                    <h4 className="mt-6 text-2xl font-bold text-white">Message received.</h4>
                     <p className="mt-3 max-w-md text-slate-300">
                       Repair moves forward because people add to it.
                     </p>
@@ -194,7 +194,7 @@ export default function CTA() {
                       }}
                       className="mt-6 text-sm font-semibold text-emerald-300 underline underline-offset-4 transition-colors duration-200 hover:text-emerald-200"
                     >
-                      Send another contribution
+                      Send another message
                     </button>
                   </motion.div>
                 ) : (
@@ -241,12 +241,12 @@ export default function CTA() {
                     </div>
 
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium text-slate-300">Contribution Type</label>
+                      <label className="mb-1.5 block text-sm font-medium text-slate-300">Message Type</label>
                       <select
                         name="category"
                         value={form.category}
                         onChange={handleChange}
-                        className="w-full rounded-xl border border-white/10 bg-[#071711] px-4 py-3 text-white outline-none transition-all duration-200 focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/40"
+                        className="theme-form-control w-full rounded-xl border px-4 py-3 outline-none transition-all duration-200 focus:border-emerald-500/40 focus:ring-2 focus:ring-emerald-500/40"
                       >
                         {suggestionCategories.map((category) => (
                           <option key={category} value={category}>
@@ -298,7 +298,7 @@ export default function CTA() {
                           </motion.span>
                         ) : (
                           <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                            Contribute Your Voice
+                            Send Message
                           </motion.span>
                         )}
                       </AnimatePresence>
@@ -318,7 +318,7 @@ export default function CTA() {
           className="mt-20 text-center"
         >
           <p className="text-3xl font-light italic leading-relaxed text-slate-200 sm:text-4xl">
-            &ldquo;Repair begins when a voice refuses to disappear.&rdquo;
+            &ldquo;Repair begins when someone chooses not to look away.&rdquo;
           </p>
           <div className="mx-auto mt-6 h-0.5 w-16 bg-gradient-to-r from-transparent via-emerald-400 to-transparent" />
         </motion.div>

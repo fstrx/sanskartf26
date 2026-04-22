@@ -1,8 +1,10 @@
+import type { GlyphName } from '@/lib/glyphs'
+
 export interface ContentCard {
   id: number
   title: string
   description: string
-  icon: string
+  icon: GlyphName
   stat?: string
   pathForward: string
 }
@@ -21,7 +23,7 @@ export interface Region {
   title: string
   description: string
   efforts: string[]
-  flag: string
+  glyph: GlyphName
   color: string
   lesson: string
 }
@@ -45,7 +47,7 @@ export const chaosContent: ContentCard[] = [
     id: 1,
     title: 'Identity Turned Into Threat',
     description: 'When belonging is weaponized, neighbors begin to look like enemies.',
-    icon: '🏴',
+    icon: 'standard',
     stat: '54 countries saw rising nationalist violence in 2023.',
     pathForward: 'Protect identity without turning it into exclusion.',
   },
@@ -53,7 +55,7 @@ export const chaosContent: ContentCard[] = [
     id: 2,
     title: 'Scarcity Under Stress',
     description: 'Pressure over water, land, food, and energy can turn fear into conflict.',
-    icon: '💧',
+    icon: 'resource',
     stat: '40% of armed conflicts involve natural resources.',
     pathForward: 'Share resources fairly before survival feels zero-sum.',
   },
@@ -61,7 +63,7 @@ export const chaosContent: ContentCard[] = [
     id: 3,
     title: 'History Left Unrepaired',
     description: 'Old borders and unhealed injustice keep reopening in the present.',
-    icon: '⚖️',
+    icon: 'justice',
     stat: '80+ territorial disputes trace back to colonial borders.',
     pathForward: 'Truth, accountability, and repair interrupt the cycle.',
   },
@@ -69,7 +71,7 @@ export const chaosContent: ContentCard[] = [
     id: 4,
     title: 'Lies at Scale',
     description: 'When lies outrun trust, fear begins choosing for us.',
-    icon: '📡',
+    icon: 'signal',
     stat: '3.6B people live amid severe information disorder.',
     pathForward: 'Rebuild trust with literacy, credible institutions, and listening.',
   },
@@ -77,7 +79,7 @@ export const chaosContent: ContentCard[] = [
     id: 5,
     title: 'Inequality That Hardens',
     description: 'When dignity feels unreachable, resentment catches fire.',
-    icon: '📊',
+    icon: 'inequality',
     stat: 'The top 1% holds 45.6% of global wealth.',
     pathForward: 'Widen access to opportunity, safety, and voice.',
   },
@@ -85,7 +87,7 @@ export const chaosContent: ContentCard[] = [
     id: 6,
     title: 'A World Armed for Panic',
     description: 'More weapons leave less distance between tension and tragedy.',
-    icon: '🔫',
+    icon: 'arms',
     stat: '$2.2T was spent on the military globally in 2023.',
     pathForward: 'Choose restraint, diplomacy, and shared security instead.',
   },
@@ -136,7 +138,7 @@ export const globalRegions: Region[] = [
       'African Union mediation and peace frameworks under Agenda 2063',
       'Rwanda community reconciliation after genocide',
     ],
-    flag: '🌍',
+    glyph: 'africa',
     color: '#f59e0b',
     lesson: 'Repair lasts when dignity is restored together.',
   },
@@ -149,7 +151,7 @@ export const globalRegions: Region[] = [
       'ASEAN regional dialogue frameworks',
       'Citizen diplomacy between India and Pakistan',
     ],
-    flag: '🌏',
+    glyph: 'asia',
     color: '#06b6d4',
     lesson: 'Peace grows when connection matters more than winning.',
   },
@@ -162,7 +164,7 @@ export const globalRegions: Region[] = [
       'European integration after two world wars',
       'OSCE diplomacy and democratic monitoring',
     ],
-    flag: '🌐',
+    glyph: 'europe',
     color: '#6366f1',
     lesson: 'Peace lasts when cooperation becomes ordinary life.',
   },
@@ -175,7 +177,7 @@ export const globalRegions: Region[] = [
       'Colombia’s 2016 peace accord and transitional justice',
       'Truth and reconciliation efforts with Indigenous communities in Canada',
     ],
-    flag: '🌎',
+    glyph: 'americas',
     color: '#10b981',
     lesson: 'Peace deepens when truth and forward motion travel together.',
   },
@@ -188,7 +190,7 @@ export const globalRegions: Region[] = [
       'Seeds of Peace dialogue across conflict lines',
       'UN-mediated ceasefire and humanitarian negotiations',
     ],
-    flag: '🕊️',
+    glyph: 'mideast',
     color: '#f97316',
     lesson: 'Peace often survives between people before it reaches policy.',
   },

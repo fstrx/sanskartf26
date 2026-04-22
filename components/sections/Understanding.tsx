@@ -40,9 +40,9 @@ export default function Understanding() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            The Work of <span className="bg-gradient-to-r from-indigo-300 to-cyan-300 bg-clip-text text-transparent">Repair</span>
+            The Work of <span className="text-cyan-200">Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             Repair starts when we recognize what fear has done and choose another way forward.
@@ -58,8 +58,8 @@ export default function Understanding() {
         >
           <div className="theme-surface-card flex flex-col justify-between rounded-[2rem] p-7 sm:p-9">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">Recognition</p>
-              <h3 className="font-display mt-4 text-3xl text-white sm:text-4xl">{activeStep.title}</h3>
+              <p className="section-kicker text-[10px] font-medium text-cyan-200/70">Recognition</p>
+              <h3 className="premium-heading mt-4 text-3xl text-white sm:text-4xl">{activeStep.title}</h3>
               <p className="mt-5 text-base leading-8 text-slate-300">{activeStep.description}</p>
 
               {activeStep.quote && (
@@ -71,7 +71,7 @@ export default function Understanding() {
             </div>
 
             <div className="mt-10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-200/65">Practices of Repair</p>
+              <p className="section-kicker text-[10px] font-medium text-indigo-200/65">Practices of repair</p>
               <div className="mt-5 flex flex-wrap gap-3">
                 {quickPractices.map((practice, index) => (
                   <span
@@ -98,7 +98,7 @@ export default function Understanding() {
               />
 
               <div className="theme-surface-overlay pointer-events-none absolute left-4 top-4 rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-200 backdrop-blur-md sm:left-6 sm:top-6">
-                Tap a turning point
+                Tap a node
               </div>
             </div>
 
@@ -117,7 +117,7 @@ export default function Understanding() {
                         : 'theme-surface-card text-slate-300 hover:border-white/20 hover:text-white'
                      }`}
                   >
-                    <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-400">Step {step.step}</p>
+                    <p className="section-kicker text-[10px] font-medium text-slate-400">Step {step.step}</p>
                     <p className="mt-2 text-sm font-semibold leading-snug">{step.title}</p>
                   </button>
                 )

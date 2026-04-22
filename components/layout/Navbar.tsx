@@ -6,6 +6,7 @@ import { navLinks } from "@/lib/content";
 import ThemeToggle from "@/components/theme/ThemeToggle";
 import { useTheme } from "@/components/theme/ThemeProvider";
 import Button from "@/components/ui/Button";
+import Glyph from "@/components/ui/Glyph";
 
 export default function Navbar() {
   const { theme } = useTheme();
@@ -99,7 +100,9 @@ export default function Navbar() {
               className={`flex items-center gap-2 rounded-full px-4 py-2.5 backdrop-blur-xl transition-all duration-300 ${navGroupSurface}`}
               onClick={closeMenu}
             >
-              <span className="text-lg">🌍</span>
+              <span className={`flex h-8 w-8 items-center justify-center rounded-full border ${isLight ? "border-slate-900/10 bg-slate-950/[0.03] text-slate-950" : "border-white/10 bg-white/[0.03] text-white"}`}>
+                <Glyph name="harmony" className="h-4 w-4" title="Harmony" />
+              </span>
               <span className={`font-black tracking-widest text-sm uppercase ${logoText}`}>
                 HARMONY
               </span>
@@ -243,8 +246,9 @@ export default function Navbar() {
             </nav>
 
             {/* Decorative */}
-            <div className={`absolute bottom-12 text-xs tracking-[0.28em] uppercase ${isLight ? "text-slate-500" : "text-slate-600"}`}>
-              🌍 Peace &amp; Global Harmony
+            <div className={`absolute bottom-12 flex items-center gap-2 text-xs tracking-[0.24em] uppercase ${isLight ? "text-slate-500" : "text-slate-600"}`}>
+              <Glyph name="harmony" className="h-3.5 w-3.5" />
+              <span>Peace &amp; Global Harmony</span>
             </div>
           </motion.div>
         )}

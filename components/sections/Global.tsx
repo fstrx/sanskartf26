@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { globalRegions } from '@/lib/content'
 import { fadeUp, staggerContainer, viewportConfig } from '@/lib/animations'
+import Glyph from '@/components/ui/Glyph'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 
 const REGION_SCROLL_STEP = 48
@@ -66,12 +67,9 @@ export default function Global() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            How the World Practices{' '}
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              Repair
-            </span>
+            How the World Practices <span className="text-cyan-200">Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
             No region heals the same way, but each shows that repair becomes real when people keep choosing it.
@@ -90,7 +88,7 @@ export default function Global() {
           >
             <div className="flex flex-row gap-2 overflow-x-auto pb-2 lg:w-60 lg:flex-shrink-0 lg:flex-col lg:overflow-visible lg:pb-0">
               <div className="theme-surface-card hidden rounded-[1.5rem] p-5 lg:block">
-                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-cyan-200/65">Scroll to move</p>
+                <p className="section-kicker text-[10px] font-medium text-cyan-200/65">Scroll to move</p>
                 <p className="mt-3 text-sm leading-relaxed text-slate-300">Tap any region to see how repair takes root there.</p>
               </div>
 
@@ -115,9 +113,11 @@ export default function Global() {
                         : undefined
                     }
                   >
-                    <span className="text-xl">{region.flag}</span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-slate-200">
+                      <Glyph name={region.glyph} className="h-5 w-5" title={region.name} />
+                    </span>
                     <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-500">{String(index + 1).padStart(2, '0')}</p>
+                      <p className="section-kicker text-[10px] font-medium text-slate-500">{String(index + 1).padStart(2, '0')}</p>
                       <p className="text-sm font-semibold">{region.name}</p>
                     </div>
                     {isActive && (
@@ -146,7 +146,7 @@ export default function Global() {
                      backdropFilter: 'blur(16px)',
                    }}
                 >
-                  <div className="mb-5 flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-400">
+                  <div className="section-kicker mb-5 flex items-center justify-between gap-4 text-[10px] font-medium text-slate-400">
                     <span>Global Lesson {activeIndex + 1} / {globalRegions.length}</span>
                     <span>Scroll or tap</span>
                   </div>
@@ -159,12 +159,14 @@ export default function Global() {
                   </div>
 
                   <div className="mb-8 flex items-start gap-5">
-                    <span className="text-4xl">{active.flag}</span>
+                    <span className="flex h-16 w-16 items-center justify-center rounded-[1.5rem] border bg-white/[0.03]" style={{ borderColor: active.color + '30', color: active.color }}>
+                      <Glyph name={active.glyph} className="h-8 w-8" title={active.name} />
+                    </span>
                     <div>
-                      <p className="mb-1 text-xs font-bold uppercase tracking-widest" style={{ color: active.color }}>
+                      <p className="section-kicker mb-1 text-xs font-medium" style={{ color: active.color }}>
                         {active.name}
                       </p>
-                      <h3 className="text-2xl font-bold leading-tight text-white sm:text-3xl">{active.title}</h3>
+                      <h3 className="premium-heading text-2xl leading-tight text-white sm:text-3xl">{active.title}</h3>
                     </div>
                   </div>
 
@@ -176,7 +178,7 @@ export default function Global() {
                   <p className="mb-10 max-w-3xl text-base leading-8 text-slate-300">{active.description}</p>
 
                   <div>
-                    <p className="mb-4 text-xs font-bold uppercase tracking-widest" style={{ color: active.color + 'cc' }}>
+                    <p className="section-kicker mb-4 text-xs font-medium" style={{ color: active.color + 'cc' }}>
                       What This Region Reveals
                     </p>
                     <ul className="space-y-4">
@@ -196,7 +198,7 @@ export default function Global() {
                   </div>
 
                    <div className="theme-surface-card mt-10 rounded-[1.5rem] p-6">
-                    <p className="mb-2 text-xs font-bold uppercase tracking-widest" style={{ color: active.color + 'cc' }}>
+                    <p className="section-kicker mb-2 text-xs font-medium" style={{ color: active.color + 'cc' }}>
                       Carry Forward
                     </p>
                     <p className="text-sm leading-relaxed text-slate-300">{active.lesson}</p>

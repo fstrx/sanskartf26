@@ -96,7 +96,7 @@ export default function Interactive() {
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex h-full flex-col justify-center p-10"
         >
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">{stage.label}</p>
+          <p className="section-kicker text-[10px] font-medium text-cyan-200/70">{stage.label}</p>
           <h3 className="mt-4 text-3xl font-bold text-white">{stage.title}</h3>
           <p className="mt-5 max-w-lg text-base leading-8 text-slate-300">{stage.body}</p>
 
@@ -121,8 +121,8 @@ export default function Interactive() {
           className="flex h-full flex-col justify-center gap-6 p-8 xl:p-10"
         >
           <div className="theme-surface-overlay rounded-[2rem] p-6 xl:p-7">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Voice in focus</p>
-            <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
+            <p className="section-kicker text-[10px] font-medium text-emerald-200/70">Voice in focus</p>
+            <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-medium ${themeAccents[highlightedMessage.theme]}`}>
               {highlightedMessage.theme}
             </span>
             <p className="mt-4 text-xl font-semibold leading-relaxed text-white">{highlightedMessage.text}</p>
@@ -211,12 +211,9 @@ export default function Interactive() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            A Field of{' '}
-            <span className="bg-gradient-to-r from-violet-300 via-cyan-300 to-emerald-300 bg-clip-text text-transparent">
-              Choices That Repair
-            </span>
+            A Field of <span className="text-cyan-200">Choices That Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             This is the hinge of the journey: one action can deepen fracture or begin repair.
@@ -232,16 +229,16 @@ export default function Interactive() {
                 <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
 
                 <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
-                  <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                  <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-medium text-slate-100 backdrop-blur-md">
                     Move to {forceMode}
                   </span>
-                  <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                  <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-medium text-slate-100 backdrop-blur-md">
                     Click to shift the field
                   </span>
                 </div>
 
                 <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
-                  <div className="flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-300">
+                  <div className="section-kicker flex items-center justify-between gap-4 text-[10px] font-medium text-slate-300">
                     <span>{storyStages[activeStageIndex].label}</span>
                     <span>{Math.round(harmonyProgress * 100)}%</span>
                   </div>
@@ -273,7 +270,7 @@ export default function Interactive() {
                           : 'theme-surface-card'
                        }`}
                     >
-                      <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-200/70">{stage.label}</p>
+                      <p className="section-kicker text-[10px] font-medium text-cyan-200/70">{stage.label}</p>
                       <h3 className="mt-3 text-2xl font-bold text-white">{stage.title}</h3>
                       <p className="mt-3 text-sm leading-relaxed text-slate-300">{stage.body}</p>
                     </motion.div>
@@ -285,9 +282,9 @@ export default function Interactive() {
                   transition={{ duration: 0.35, ease: 'easeOut' }}
                    className="theme-surface-card rounded-[2rem] p-7"
                 >
-                  <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-emerald-200/70">Voice in focus</p>
+                  <p className="section-kicker text-[10px] font-medium text-emerald-200/70">Voice in focus</p>
                     <div className="theme-surface-overlay mt-5 rounded-[1.75rem] p-6">
-                    <span className={`inline-flex rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] ${themeAccents[highlightedMessage.theme]}`}>
+                    <span className={`inline-flex rounded-full border px-3 py-1 text-[10px] font-medium ${themeAccents[highlightedMessage.theme]}`}>
                       {highlightedMessage.theme}
                     </span>
                     <p className="mt-4 text-xl font-semibold leading-relaxed text-white">{highlightedMessage.text}</p>
@@ -329,16 +326,16 @@ export default function Interactive() {
                   <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
 
                   <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
-                    <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                    <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-medium text-slate-100 backdrop-blur-md">
                       Move to {forceMode}
                     </span>
-                    <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-100 backdrop-blur-md">
+                    <span className="theme-surface-overlay rounded-full px-3 py-2 text-[10px] font-medium text-slate-100 backdrop-blur-md">
                       Click to shift the field
                     </span>
                   </div>
 
                   <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
-                    <div className="flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-[0.28em] text-slate-300">
+                    <div className="section-kicker flex items-center justify-between gap-4 text-[10px] font-medium text-slate-300">
                       <span>{storyStages[activeStageIndex].label}</span>
                       <span>{Math.round(harmonyProgress * 100)}%</span>
                     </div>

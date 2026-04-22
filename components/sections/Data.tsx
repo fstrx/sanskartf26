@@ -151,12 +151,9 @@ export default function Data() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            What Conflict Costs{" "}
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-              and Repair Can Protect
-            </span>
+            What Conflict Costs <span className="text-emerald-200">and Repair Can Protect</span>
           </motion.h2>
           <motion.p
             variants={fadeUp}

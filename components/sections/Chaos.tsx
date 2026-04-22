@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
 import { chaosContent } from '@/lib/content'
 import { fadeUp, staggerContainer, scaleIn, viewportConfig } from '@/lib/animations'
+import Glyph from '@/components/ui/Glyph'
 import SectionWrapper from '@/components/ui/SectionWrapper'
 
 const ChaosScene = dynamic(() => import('@/components/three/chaos/ChaosScene'), {
@@ -39,9 +40,9 @@ export default function Chaos() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            The Moment Things <span className="bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">Come Apart</span>
+            The Moment Things <span className="text-red-300">Come Apart</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             Collapse has a pattern. Fear, scarcity, lies, inequality, and force turn pressure into fracture.
@@ -65,8 +66,10 @@ export default function Chaos() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(248,113,113,0.15),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative z-10">
                 <div className="mb-5 flex items-center justify-between">
-                  <span className="text-3xl">{card.icon}</span>
-                  <span className="rounded-full border border-red-400/20 bg-red-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.24em] text-red-200/80">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-400/18 bg-white/[0.03] text-red-100/90">
+                    <Glyph name={card.icon} className="h-6 w-6" title={card.title} />
+                  </span>
+                  <span className="section-kicker rounded-full border border-red-400/16 bg-red-500/8 px-3 py-1 text-[10px] font-medium text-red-200/70">
                     Pattern {card.id}
                   </span>
                 </div>
@@ -77,13 +80,13 @@ export default function Chaos() {
                 <p className="mb-6 text-sm leading-7 text-slate-300">{card.description}</p>
 
                 {card.stat && (
-                  <p className="mb-5 border-l border-red-400/35 pl-4 text-xs font-semibold uppercase tracking-[0.18em] text-red-200/85">
+                  <p className="mb-5 border-l border-red-400/28 pl-4 text-xs font-medium text-red-200/78">
                     {card.stat}
                   </p>
                 )}
 
                 <div className="theme-surface-overlay rounded-[1.5rem] p-5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-orange-200/70">Path Forward</p>
+                  <p className="section-kicker text-[10px] font-medium text-orange-200/70">Path forward</p>
                   <p className="mt-2 text-sm text-slate-200">{card.pathForward}</p>
                 </div>
               </div>

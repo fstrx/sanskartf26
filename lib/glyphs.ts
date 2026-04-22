@@ -1,0 +1,13 @@
+export type GlyphName =
+  | 'harmony'
+  | 'standard'
+  | 'resource'
+  | 'justice'
+  | 'signal'
+  | 'inequality'
+  | 'arms'
+  | 'africa'
+  | 'asia'
+  | 'europe'
+  | 'americas'
+  | 'mideast'
