@@ -101,9 +101,9 @@ export default function CTA() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl"
+            className="premium-heading text-5xl leading-tight text-white sm:text-6xl lg:text-7xl"
           >
-            Carry the <span className="font-display text-emerald-200">Repair Forward</span>
+            Carry the <span className="text-emerald-200">Repair Forward</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-slate-300">
             The journey ends with a choice. Leave one message or one suggestion that helps this work continue.
@@ -144,14 +144,14 @@ export default function CTA() {
                     key={prompt}
                     type="button"
                     onClick={() => handlePromptClick(prompt)}
-                    className="theme-surface-card w-full rounded-[1.5rem] p-5 text-left text-sm leading-7 text-slate-200 transition-all duration-200 hover:border-emerald-300/30 hover:bg-emerald-400/8"
+                    className="theme-surface-card w-full rounded-[0.75rem] p-5 text-left text-sm leading-7 text-slate-200 transition-all duration-200 hover:border-emerald-300/30 hover:bg-emerald-400/8"
                   >
                     {prompt}
                   </button>
                 ))}
               </div>
 
-              <div className="theme-surface-overlay mt-10 rounded-[1.75rem] p-6">
+              <div className="theme-surface-overlay mt-10 rounded-[0.5rem] p-6">
                 <p className="section-kicker text-[10px] font-medium text-cyan-200/70">What we are asking for</p>
                 <ul className="mt-4 space-y-3 text-sm leading-relaxed text-slate-300">
                   <li>One truth that should not be avoided.</li>

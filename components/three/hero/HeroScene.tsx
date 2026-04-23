@@ -80,7 +80,13 @@ function CameraRig({ pointerRef, convergenceRef }: {
   return null
 }
 
-function UnityCore({ convergenceRef }: { convergenceRef: MutableRefObject<number> }) {
+function UnityCore({
+  convergenceRef,
+  scrollProgressRef,
+}: {
+  convergenceRef: MutableRefObject<number>
+  scrollProgressRef: MutableRefObject<number>
+}) {
   const meshRef = useRef<THREE.Mesh>(null)
   const materialRef = useRef<THREE.MeshBasicMaterial>(null)
   const glowRef = useRef<THREE.Sprite>(null)
@@ -100,13 +106,15 @@ function UnityCore({ convergenceRef }: { convergenceRef: MutableRefObject<number
 
     const pulse = 0.92 + Math.sin(clock.getElapsedTime() * 1.8) * 0.03
     const converge = convergenceRef.current
+    const fracture = THREE.MathUtils.smoothstep(scrollProgressRef.current, 0.42, 0.88)
     const coreScale = pulse + converge * 0.35
     const glowScale = 1.5 + Math.sin(clock.getElapsedTime() * 1.2) * 0.04 + converge * 0.55
+    const corePresence = 1 - fracture * 0.64
 
     meshRef.current.scale.setScalar(coreScale)
-    materialRef.current.opacity = 0.14 + converge * 0.16
+    materialRef.current.opacity = (0.14 + converge * 0.16) * corePresence
     glowRef.current.scale.set(glowScale, glowScale, 1)
-    glowMaterialRef.current.opacity = 0.32 + converge * 0.18
+    glowMaterialRef.current.opacity = (0.32 + converge * 0.18) * corePresence
   })
 
   return (
@@ -155,11 +163,12 @@ function HeroParticles({
   const pointsRef = useRef<THREE.Points>(null)
   const materialRef = useRef<THREE.PointsMaterial>(null)
 
-  const { basePositions, colors, phases } = useMemo(() => {
+  const { basePositions, baseColors, phases, chaosSeeds } = useMemo(() => {
     const count = theme === 'dark' ? 1200 : 1800
     const positions = new Float32Array(count * 3)
     const palette = new Float32Array(count * 3)
     const phaseOffsets = new Float32Array(count)
+    const seeds = new Float32Array(count)
 
     for (let i = 0; i < count; i += 1) {
       const radius = 0.7 + seedNoise(i + 1) * 2.2
@@ -170,6 +179,7 @@ function HeroParticles({
       positions[i * 3 + 1] = Math.cos(phi) * radius * 0.75
       positions[i * 3 + 2] = Math.sin(phi) * Math.sin(theta) * radius * 1.5 - 0.3
       phaseOffsets[i] = seedNoise(i + 73) * Math.PI * 2
+      seeds[i] = seedNoise(i + 113)
 
       const tone = i % 3
       if (tone === 0) {
@@ -187,7 +197,7 @@ function HeroParticles({
       }
     }
 
-    return { basePositions: positions, colors: palette, phases: phaseOffsets }
+    return { basePositions: positions, baseColors: palette, phases: phaseOffsets, chaosSeeds: seeds }
   }, [theme])
 
   useFrame(({ clock }, delta) => {
@@ -199,6 +209,7 @@ function HeroParticles({
 
     const time = clock.getElapsedTime()
     const positions = points.geometry.attributes.position.array as Float32Array
+    const colors = points.geometry.attributes.color.array as Float32Array
     const pointer = pointerRef.current
     pointer.x = THREE.MathUtils.damp(pointer.x, pointer.active ? pointer.targetX : 0, 7.5, delta)
     pointer.y = THREE.MathUtils.damp(pointer.y, pointer.active ? pointer.targetY : 0, 7.5, delta)
@@ -212,14 +223,18 @@ function HeroParticles({
     const tangentY = pointer.vx
     const pulse = pulseRef.current
     const convergence = convergenceRef.current
-    const scrollProgress = THREE.MathUtils.smoothstep(scrollProgressRef.current, 0, 1)
-    const scrollDrift = THREE.MathUtils.smootherstep(scrollProgress, 0, 1)
+    const scrollProgress = THREE.MathUtils.clamp(scrollProgressRef.current, 0, 1)
+    const unrest = THREE.MathUtils.smoothstep(scrollProgress, 0.28, 0.68)
+    const fracture = THREE.MathUtils.smootherstep(scrollProgress, 0.42, 0.88)
+    const fall = THREE.MathUtils.smootherstep(scrollProgress, 0.66, 1)
+    const colorShift = THREE.MathUtils.smootherstep(scrollProgress, 0.34, 0.94)
 
     for (let i = 0; i < positions.length; i += 3) {
       const baseX = basePositions[i]
       const baseY = basePositions[i + 1]
       const baseZ = basePositions[i + 2]
       const particleIndex = i / 3
+      const chaosSeed = chaosSeeds[particleIndex]
       const baseDistance = Math.hypot(baseX, baseY)
       const dx = baseX - cursorX
       const dy = baseY - cursorY
@@ -245,9 +260,18 @@ function HeroParticles({
       const outwardY = baseDistance > 0.001 ? baseY / baseDistance : 0
       const edgeBias = THREE.MathUtils.clamp(baseDistance / 3.2, 0, 1)
       const edgeLift = 0.12 + edgeBias * 0.72
-      const spreadX = outwardX * scrollDrift * edgeLift * 1.15
-      const spreadY = outwardY * scrollDrift * edgeLift * 0.82
-      const spreadZ = scrollDrift * (0.05 + edgeBias * 0.16)
+      const chaosWave = Math.sin(time * (1.8 + chaosSeed * 2.2) + phases[particleIndex] * 1.7)
+      const chaosTear = Math.cos(time * (1.35 + chaosSeed) + baseX * 2.1 - baseY * 1.3)
+      const fallSpeed = 1.25 + chaosSeed * 2.05 + edgeBias * 0.72
+      const spreadX = outwardX * fracture * edgeLift * 0.86
+      const spreadY = outwardY * fracture * edgeLift * 0.18
+      const spreadZ = fracture * (0.04 + edgeBias * 0.12)
+      const breakX = (chaosWave * 0.14 + chaosTear * 0.08) * unrest * (0.32 + edgeBias * 0.72)
+      const breakY = Math.sin(time * 1.8 + phases[particleIndex]) * unrest * 0.1
+      const breakZ = chaosTear * unrest * 0.16
+      const fallY = fall * fallSpeed + fall * fall * 0.72
+      const fallX = (chaosSeed - 0.5) * fall * 0.82
+      const fallZ = Math.sin(phases[particleIndex] + time * 0.56) * fall * 0.24
 
       const targetX = baseX
         + directionX * wake
@@ -255,6 +279,8 @@ function HeroParticles({
         - pulseDirectionX * pulseFocus * 0.26
         - baseX * centerPull
         + spreadX
+        + breakX
+        + fallX
         + drift
       const targetY = baseY
         + directionY * wake
@@ -262,33 +288,48 @@ function HeroParticles({
         - pulseDirectionY * pulseFocus * 0.26
         - baseY * centerPull
         + spreadY
+        + breakY
+        - fallY
         + shimmer * 0.75
       const targetZ = baseZ
         - baseZ * centerPull
         - spreadZ
+        + breakZ
+        + fallZ
         + focus * (0.06 + pointer.motion * 0.18)
         + pulseFocus * 0.36
         + shimmer
 
-      positions[i] = THREE.MathUtils.damp(positions[i], targetX, 5.8, delta)
-      positions[i + 1] = THREE.MathUtils.damp(positions[i + 1], targetY, 5.8, delta)
-      positions[i + 2] = THREE.MathUtils.damp(positions[i + 2], targetZ, 5.8, delta)
+      const particleDamp = 5.8 + fracture * 1.1
+      positions[i] = THREE.MathUtils.damp(positions[i], targetX, particleDamp, delta)
+      positions[i + 1] = THREE.MathUtils.damp(positions[i + 1], targetY, particleDamp, delta)
+      positions[i + 2] = THREE.MathUtils.damp(positions[i + 2], targetZ, particleDamp, delta)
+
+      const redTone = particleIndex % 3
+      const targetRed = redTone === 0 ? 0.996 : redTone === 1 ? 0.988 : 0.984
+      const targetGreen = redTone === 0 ? 0.792 : redTone === 1 ? 0.647 : 0.444
+      const targetBlue = redTone === 0 ? 0.792 : redTone === 1 ? 0.647 : 0.522
+
+      colors[i] = THREE.MathUtils.lerp(baseColors[i], targetRed, colorShift)
+      colors[i + 1] = THREE.MathUtils.lerp(baseColors[i + 1], targetGreen, colorShift)
+      colors[i + 2] = THREE.MathUtils.lerp(baseColors[i + 2], targetBlue, colorShift)
     }
 
     convergenceRef.current = Math.max(0, convergenceRef.current - delta * 0.6)
     pulse.strength = Math.max(0, pulse.strength - delta * 1.75)
     points.geometry.attributes.position.needsUpdate = true
-    points.rotation.y = time * 0.042 + pointer.x * 0.045
-    points.rotation.x = Math.sin(time * 0.18) * 0.06 + pointer.y * 0.03
-    material.size = 0.041 - scrollDrift * 0.004 + pointer.motion * 0.008 + pulse.strength * 0.012
-    material.opacity = 0.88 - scrollDrift * 0.16 + pulse.strength * 0.08
+    points.geometry.attributes.color.needsUpdate = true
+    points.rotation.y = time * (0.042 + fracture * 0.012) + pointer.x * 0.045
+    points.rotation.x = Math.sin(time * 0.18) * 0.06 + pointer.y * 0.03 - fall * 0.04
+    material.size = 0.041 + unrest * 0.003 - fall * 0.002 + pointer.motion * 0.008 + pulse.strength * 0.012
+    material.opacity = 0.88 - fall * 0.24 + pulse.strength * 0.08
   })
 
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[basePositions.slice(), 3]} />
-        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
+        <bufferAttribute attach="attributes-color" args={[baseColors.slice(), 3]} />
       </bufferGeometry>
       <pointsMaterial
         ref={materialRef}
@@ -324,7 +365,7 @@ export default function HeroScene({
     >
       <fog attach="fog" args={['#050611', 4.5, 10]} />
       <CameraRig pointerRef={pointerRef} convergenceRef={convergenceRef} />
-      <UnityCore convergenceRef={convergenceRef} />
+      <UnityCore convergenceRef={convergenceRef} scrollProgressRef={scrollProgressRef} />
       <HeroParticles
         pointerRef={pointerRef}
         pulseRef={pulseRef}

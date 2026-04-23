@@ -120,7 +120,7 @@ export default function Interactive() {
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="flex h-full flex-col justify-center gap-6 p-8 xl:p-10"
         >
-          <div className="theme-surface-overlay rounded-[2rem] p-6 xl:p-7">
+          <div className="theme-surface-overlay rounded-[0.5rem] p-6 xl:p-7">
             <p className="section-kicker text-[10px] font-medium text-emerald-200/70">Voice in focus</p>
             <span className={`mt-4 inline-flex rounded-full border px-3 py-1 text-[10px] font-medium ${themeAccents[highlightedMessage.theme]}`}>
               {highlightedMessage.theme}
@@ -153,7 +153,7 @@ export default function Interactive() {
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="flex h-full flex-col justify-center p-10 xl:p-12"
       >
-        <div className="theme-surface-overlay rounded-[2rem] p-8 xl:p-10">
+        <div className="theme-surface-overlay rounded-[0.5rem] p-8 xl:p-10">
           {renderEndingContent('mx-auto max-w-4xl text-center')}
         </div>
       </motion.div>
@@ -213,7 +213,7 @@ export default function Interactive() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            A Field of <span className="font-display text-cyan-200">Choices That Repair</span>
+            A Field of <span className="text-cyan-200">Choices That Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             This is the hinge of the journey: one action can deepen fracture or begin repair.
@@ -225,7 +225,7 @@ export default function Interactive() {
         <div className="lg:hidden">
           <div className="theme-surface-panel w-full overflow-hidden rounded-[2.25rem] backdrop-blur-xl">
             <div className="grid gap-8 p-6 lg:p-7">
-              <div className="relative min-h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem]">
+              <div className="relative min-h-[28rem] overflow-hidden rounded-[0.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem]">
                 <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
 
                 <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
@@ -237,7 +237,7 @@ export default function Interactive() {
                   </span>
                 </div>
 
-                <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
+                <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-[0.5rem] p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
                   <div className="section-kicker flex items-center justify-between gap-4 text-[10px] font-medium text-slate-300">
                     <span>{storyStages[activeStageIndex].label}</span>
                     <span>{Math.round(harmonyProgress * 100)}%</span>
@@ -264,7 +264,7 @@ export default function Interactive() {
                         scale: 0.97 + intensity * 0.03,
                       }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
-                       className={`rounded-[2rem] border p-7 ${
+                       className={`rounded-[0.75rem] border p-7 ${
                         activeStageIndex === index
                           ? 'border-white/16 bg-white/8 shadow-[0_0_50px_rgba(34,211,238,0.08)]'
                           : 'theme-surface-card'
@@ -280,10 +280,10 @@ export default function Interactive() {
                 <motion.div
                   animate={{ opacity: 0.25 + panelStates[2] * 0.75, y: 30 - panelStates[2] * 30 }}
                   transition={{ duration: 0.35, ease: 'easeOut' }}
-                   className="theme-surface-card rounded-[2rem] p-7"
+                   className="theme-surface-card rounded-[0.75rem] p-7"
                 >
                   <p className="section-kicker text-[10px] font-medium text-emerald-200/70">Voice in focus</p>
-                    <div className="theme-surface-overlay mt-5 rounded-[1.75rem] p-6">
+                    <div className="theme-surface-overlay mt-5 rounded-[0.5rem] p-6">
                     <span className={`inline-flex rounded-full border px-3 py-1 text-[10px] font-medium ${themeAccents[highlightedMessage.theme]}`}>
                       {highlightedMessage.theme}
                     </span>
@@ -322,7 +322,7 @@ export default function Interactive() {
                 className="theme-surface-panel w-full overflow-hidden rounded-[2.25rem] backdrop-blur-xl lg:h-[calc(100svh-12rem)]"
               >
               <div className="grid gap-8 p-6 lg:h-full lg:grid-cols-[1.18fr_0.82fr] lg:p-7">
-                <div className="relative min-h-[28rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem] lg:h-full lg:min-h-0">
+                <div className="relative min-h-[28rem] overflow-hidden rounded-[0.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.2),transparent_48%)] sm:min-h-[34rem] lg:h-full lg:min-h-0">
                   <CenterpieceScene harmonyProgress={harmonyProgress} onModeChange={setForceMode} />
 
                   <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2 sm:left-6 sm:top-6">
@@ -334,7 +334,7 @@ export default function Interactive() {
                     </span>
                   </div>
 
-                  <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-2xl p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
+                  <div className="theme-surface-overlay pointer-events-none absolute bottom-4 left-4 right-4 rounded-[0.5rem] p-4 backdrop-blur-md sm:bottom-6 sm:left-6 sm:right-6">
                     <div className="section-kicker flex items-center justify-between gap-4 text-[10px] font-medium text-slate-300">
                       <span>{storyStages[activeStageIndex].label}</span>
                       <span>{Math.round(harmonyProgress * 100)}%</span>
@@ -349,7 +349,7 @@ export default function Interactive() {
                 </div>
 
                 <div className="hidden lg:block">
-                  <div className="theme-surface-card relative h-full overflow-hidden rounded-[2rem]">
+                  <div className="theme-surface-card relative h-full overflow-hidden rounded-[0.75rem]">
                     <AnimatePresence mode="wait">{renderDesktopPanel()}</AnimatePresence>
                   </div>
                 </div>

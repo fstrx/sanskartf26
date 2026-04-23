@@ -69,7 +69,7 @@ export default function Global() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            How the World Practices <span className="font-display text-cyan-200">Repair</span>
+            How the World Practices <span className="text-cyan-200">Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-400">
             No region heals the same way, but each shows that repair becomes real when people keep choosing it.
@@ -87,7 +87,7 @@ export default function Global() {
             className="flex w-full flex-col gap-10 lg:flex-row"
           >
             <div className="flex flex-row gap-2 overflow-x-auto pb-2 lg:w-60 lg:flex-shrink-0 lg:flex-col lg:overflow-visible lg:pb-0">
-              <div className="theme-surface-card hidden rounded-[1.5rem] p-5 lg:block">
+              <div className="theme-surface-card hidden rounded-[0.75rem] p-5 lg:block">
                 <p className="section-kicker text-[10px] font-medium text-cyan-200/65">Scroll to move</p>
                 <p className="mt-3 text-sm leading-relaxed text-slate-300">Tap any region to see how repair takes root there.</p>
               </div>
@@ -99,7 +99,7 @@ export default function Global() {
                   <button
                     key={region.id}
                     onClick={() => handleRegionSelect(index)}
-                    className={`flex flex-shrink-0 items-center gap-4 rounded-[1.25rem] border px-5 py-4 text-left whitespace-nowrap transition-all duration-250 lg:whitespace-normal ${
+                    className={`flex flex-shrink-0 items-center gap-4 rounded-[0.5rem] border px-5 py-4 text-left whitespace-nowrap transition-all duration-250 lg:whitespace-normal ${
                       isActive
                         ? 'border-white/15 text-white shadow-[0_0_28px_rgba(34,211,238,0.06)]'
                         : 'border-transparent text-slate-400 hover:bg-white/5 hover:text-white'
@@ -113,7 +113,7 @@ export default function Global() {
                         : undefined
                     }
                   >
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-slate-200">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-[0.375rem] border border-white/10 bg-white/[0.03] text-slate-200">
                       <Glyph name={region.glyph} className="h-5 w-5" title={region.name} />
                     </span>
                     <div>
@@ -159,7 +159,7 @@ export default function Global() {
                   </div>
 
                   <div className="mb-8 flex items-start gap-5">
-                    <span className="flex h-16 w-16 items-center justify-center rounded-[1.5rem] border bg-white/[0.03]" style={{ borderColor: active.color + '30', color: active.color }}>
+                    <span className="flex h-16 w-16 items-center justify-center rounded-[0.75rem] border bg-white/[0.03]" style={{ borderColor: active.color + '30', color: active.color }}>
                       <Glyph name={active.glyph} className="h-8 w-8" title={active.name} />
                     </span>
                     <div>
@@ -197,7 +197,7 @@ export default function Global() {
                     </ul>
                   </div>
 
-                   <div className="theme-surface-card mt-10 rounded-[1.5rem] p-6">
+                   <div className="theme-surface-card mt-10 rounded-[0.5rem] p-6">
                     <p className="section-kicker mb-2 text-xs font-medium" style={{ color: active.color + 'cc' }}>
                       Carry Forward
                     </p>

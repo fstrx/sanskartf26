@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { understandingSteps } from '@/lib/content'
 import { fadeUp, staggerContainer, viewportConfig } from '@/lib/animations'
 import SectionWrapper from '@/components/ui/SectionWrapper'
@@ -13,6 +13,275 @@ const UnderstandingScene = dynamic(() => import('@/components/three/understandin
 })
 
 const quickPractices = ['Stay in the room', 'See the human being', 'Teach what hate hides', 'Build for each other', 'Repair what was broken']
+
+const repairVisuals = [
+  {
+    label: 'Dialogue held open',
+    marker: 'Shared room',
+    description: 'Two sides stay inside one boundary long enough for a line to form.',
+  },
+  {
+    label: 'Dignity recognized',
+    marker: 'Human center',
+    description: 'Opposing outlines align around the same human signal.',
+  },
+  {
+    label: 'Hate examined',
+    marker: 'Learning path',
+    description: 'Hidden fragments become named, ordered, and easier to challenge.',
+  },
+  {
+    label: 'Systems rebuilt',
+    marker: 'Shared structure',
+    description: 'Separate supports become one bridge that can carry people together.',
+  },
+  {
+    label: 'Truth repaired',
+    marker: 'Accountability',
+    description: 'The fracture stays visible while the circle closes around it.',
+  },
+]
+
+function RepairVisual({ activeIndex }: { activeIndex: number }) {
+  const visual = repairVisuals[activeIndex]
+
+  return (
+    <div className="relative min-h-[18rem] overflow-hidden rounded-[0.5rem] border border-cyan-200/10 bg-[radial-gradient(circle_at_50%_18%,rgba(125,211,252,0.14),transparent_34%),linear-gradient(145deg,rgba(15,23,42,0.7),rgba(2,6,23,0.86))] p-5 sm:min-h-[20rem] sm:p-6">
+      <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(125,211,252,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,0.08)_1px,transparent_1px)] [background-size:42px_42px]" />
+      <div className="pointer-events-none absolute inset-x-8 top-8 h-px bg-gradient-to-r from-transparent via-cyan-200/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-8 bottom-8 h-px bg-gradient-to-r from-transparent via-indigo-200/20 to-transparent" />
+
+      <div className="relative z-10 flex items-start justify-between gap-4">
+        <div>
+          <p className="section-kicker text-[10px] font-medium text-cyan-200/70">{visual.marker}</p>
+          <p className="mt-2 max-w-[18rem] text-sm leading-6 text-slate-300">{visual.description}</p>
+        </div>
+        <div className="rounded-full border border-cyan-200/15 bg-cyan-300/8 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-cyan-100/80">
+          0{activeIndex + 1}
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, y: 18, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -14, scale: 0.98 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-x-5 bottom-5 top-24 sm:inset-x-8 sm:bottom-7"
+        >
+          {activeIndex === 0 && <DialogueVisual />}
+          {activeIndex === 1 && <EmpathyVisual />}
+          {activeIndex === 2 && <LearningVisual />}
+          {activeIndex === 3 && <BridgeVisual />}
+          {activeIndex === 4 && <JusticeVisual />}
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="pointer-events-none absolute bottom-5 left-5 right-5 z-10 flex items-center justify-between gap-4 sm:left-6 sm:right-6">
+        <p className="max-w-[15rem] text-sm font-semibold text-white">{visual.label}</p>
+        <div className="h-2 w-24 overflow-hidden rounded-full bg-white/8">
+          <motion.div
+            key={`meter-${activeIndex}`}
+            initial={{ width: '18%' }}
+            animate={{ width: `${34 + activeIndex * 14}%` }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="h-full rounded-full bg-cyan-200"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SignalPoint({ className, delay = 0 }: { className: string; delay?: number }) {
+  return (
+    <motion.div
+      initial={{ scale: 0.76, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay, duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+      className={`absolute flex h-16 w-16 items-center justify-center rounded-full border border-cyan-200/25 bg-cyan-300/10 shadow-[0_0_40px_rgba(34,211,238,0.16)] ${className}`}
+    >
+      <span className="h-3 w-3 rounded-full bg-cyan-100" />
+    </motion.div>
+  )
+}
+
+function DialogueVisual() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0.8 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-x-[12%] top-[27%] h-[42%] rounded-[999px] border border-cyan-100/18"
+      />
+      <SignalPoint className="left-[15%] top-[39%]" delay={0.08} />
+      <SignalPoint className="right-[15%] top-[39%]" delay={0.16} />
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ delay: 0.28, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-[27%] right-[27%] top-[52%] h-px origin-left bg-gradient-to-r from-cyan-200 via-white to-cyan-200"
+      />
+      <motion.div
+        animate={{ opacity: [0.18, 0.42, 0.18] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute left-1/2 top-[52%] h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/14 blur-2xl"
+      />
+    </div>
+  )
+}
+
+function EmpathyVisual() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        initial={{ x: -18, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-[18%] top-[30%] h-28 w-24 rounded-[48%_52%_45%_55%] border border-indigo-200/28 bg-indigo-300/8"
+      />
+      <motion.div
+        initial={{ x: 18, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute right-[18%] top-[30%] h-28 w-24 rounded-[52%_48%_55%_45%] border border-cyan-200/28 bg-cyan-300/8"
+      />
+      <motion.div
+        initial={{ scale: 0.72, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.22, duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-1/2 top-[46%] flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-full border border-white/20 bg-white/8"
+      >
+        <span className="h-8 w-8 rounded-full bg-cyan-100/90" />
+      </motion.div>
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ delay: 0.38, duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-[29%] right-[29%] top-[66%] h-px origin-center bg-gradient-to-r from-indigo-200 via-white to-cyan-200"
+      />
+    </div>
+  )
+}
+
+function LearningVisual() {
+  const rows = ['Identity', 'Source', 'Pattern']
+
+  return (
+    <div className="absolute inset-0">
+      {[0, 1, 2, 3, 4].map((index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0, rotate: -14, y: 12 }}
+          animate={{ opacity: 1, rotate: index % 2 === 0 ? 6 : -5, y: 0 }}
+          transition={{ delay: index * 0.06, duration: 0.4 }}
+          className="absolute h-8 w-2 rounded-full bg-rose-300/55"
+          style={{ left: `${16 + index * 9}%`, top: `${27 + (index % 3) * 13}%` }}
+        />
+      ))}
+
+      <div className="absolute right-[10%] top-[24%] w-[54%] space-y-4">
+        {rows.map((row, index) => (
+          <motion.div
+            key={row}
+            initial={{ opacity: 0, x: 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.18 + index * 0.1, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center gap-3"
+          >
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-cyan-200/20 bg-cyan-300/10 text-[10px] font-bold text-cyan-100">
+              {index + 1}
+            </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-cyan-100/80 to-cyan-100/10" />
+            <span className="w-20 text-right text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-300">{row}</span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function BridgeVisual() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: 1 }}
+        transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-[14%] right-[14%] top-[43%] h-2 origin-left rounded-full bg-gradient-to-r from-indigo-200 via-cyan-100 to-emerald-200"
+      />
+      {[18, 34, 50, 66, 82].map((left, index) => (
+        <motion.div
+          key={left}
+          initial={{ scaleY: 0, opacity: 0 }}
+          animate={{ scaleY: 1, opacity: 1 }}
+          transition={{ delay: 0.08 + index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute top-[45%] h-[34%] w-3 origin-top rounded-b-full border border-cyan-200/18 bg-white/8"
+          style={{ left: `${left}%` }}
+        />
+      ))}
+      {[0, 1, 2].map((index) => (
+        <motion.div
+          key={index}
+          animate={{ y: [0, -7, 0] }}
+          transition={{ duration: 2.4, repeat: Infinity, delay: index * 0.25, ease: 'easeInOut' }}
+          className="absolute top-[28%] h-4 w-4 rounded-full bg-cyan-100/80"
+          style={{ left: `${31 + index * 18}%` }}
+        />
+      ))}
+    </div>
+  )
+}
+
+function JusticeVisual() {
+  return (
+    <div className="absolute inset-0">
+      <motion.div
+        initial={{ scale: 0.82, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-1/2 top-[44%] h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-100/24"
+      />
+      <motion.div
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0"
+      >
+        <svg className="h-full w-full" viewBox="0 0 320 180" fill="none" aria-hidden="true">
+          <motion.path
+            d="M160 36 L148 67 L173 91 L151 121 L165 148"
+            stroke="rgb(252 165 165 / 0.82)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          />
+          <motion.path
+            d="M103 91 C125 71 148 63 160 67 C177 72 190 86 217 79"
+            stroke="rgb(165 243 252 / 0.92)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ delay: 0.26, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+          />
+        </svg>
+      </motion.div>
+      <motion.div
+        initial={{ scale: 0.72, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.38, duration: 0.44, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-1/2 top-[44%] flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cyan-100 text-xs font-black uppercase tracking-[0.16em] text-slate-950"
+      >
+        Truth
+      </motion.div>
+    </div>
+  )
+}
 
 export default function Understanding() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -42,7 +311,7 @@ export default function Understanding() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            The Work of <span className="font-display text-cyan-200">Repair</span>
+            The Work of <span className="text-cyan-200">Repair</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             Repair starts when we recognize what fear has done and choose another way forward.
@@ -56,15 +325,17 @@ export default function Understanding() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="theme-surface-panel grid gap-10 rounded-[2.25rem] p-6 backdrop-blur-xl lg:grid-cols-[1.02fr_1.18fr] lg:p-8"
         >
-          <div className="theme-surface-card flex flex-col justify-between rounded-[2rem] p-7 sm:p-9">
+          <div className="theme-surface-card flex flex-col justify-between rounded-[0.75rem] p-5 sm:p-7">
             <div>
-              <p className="section-kicker text-[10px] font-medium text-cyan-200/70">Recognition</p>
+              <RepairVisual activeIndex={activeIndex} />
+
+              <p className="section-kicker mt-8 text-[10px] font-medium text-cyan-200/70">Recognition</p>
               <h3 className="premium-heading mt-4 text-3xl text-white sm:text-4xl">{activeStep.title}</h3>
               <p className="mt-5 text-base leading-8 text-slate-300">{activeStep.description}</p>
 
               {activeStep.quote && (
-                <blockquote className="theme-surface-overlay mt-8 rounded-[1.5rem] p-6 text-slate-200">
-                  <p className="text-lg italic leading-relaxed">&ldquo;{activeStep.quote}&rdquo;</p>
+                <blockquote className="mt-6 border-l border-cyan-200/30 pl-5 text-slate-300">
+                  <p className="text-sm italic leading-7">&ldquo;{activeStep.quote}&rdquo;</p>
                   {activeStep.author && <footer className="mt-3 text-sm text-slate-400">{activeStep.author}</footer>}
                 </blockquote>
               )}
@@ -90,7 +361,7 @@ export default function Understanding() {
           </div>
 
           <div className="flex flex-col gap-5">
-            <div className="relative min-h-[20rem] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.18),transparent_55%)] sm:min-h-[24rem] lg:min-h-[28rem] xl:min-h-[32rem]">
+            <div className="relative min-h-[20rem] overflow-hidden rounded-[0.75rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.18),transparent_55%)] sm:min-h-[24rem] lg:min-h-[28rem] xl:min-h-[32rem]">
               <UnderstandingScene
                 steps={understandingSteps}
                 activeIndex={activeIndex}
@@ -111,7 +382,7 @@ export default function Understanding() {
                     key={step.step}
                     type="button"
                     onClick={() => setActiveIndex(index)}
-                      className={`rounded-[1.5rem] border px-5 py-4 text-left transition-all duration-200 ${
+                      className={`rounded-[0.75rem] border px-5 py-4 text-left transition-all duration-200 ${
                       isActive
                         ? 'border-cyan-300/35 bg-cyan-400/10 text-white shadow-[0_0_30px_rgba(34,211,238,0.12)]'
                         : 'theme-surface-card text-slate-300 hover:border-white/20 hover:text-white'

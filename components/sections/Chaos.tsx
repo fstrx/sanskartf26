@@ -42,7 +42,7 @@ export default function Chaos() {
             variants={fadeUp}
             className="premium-heading text-4xl leading-tight text-white sm:text-5xl lg:text-6xl"
           >
-            The Moment Things <span className="font-display text-red-300">Come Apart</span>
+            The Moment Things <span className="text-red-300">Come Apart</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
             Collapse has a pattern. Fear, scarcity, lies, inequality, and force turn pressure into fracture.
@@ -66,7 +66,7 @@ export default function Chaos() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(248,113,113,0.15),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative z-10">
                 <div className="mb-5 flex items-center justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-400/18 bg-white/[0.03] text-red-100/90">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-red-400/18 bg-white/[0.03] text-red-100/90">
                     <Glyph name={card.icon} className="h-6 w-6" title={card.title} />
                   </span>
                   <span className="section-kicker rounded-full border border-red-400/16 bg-red-500/8 px-3 py-1 text-[10px] font-medium text-red-200/70">
@@ -85,7 +85,7 @@ export default function Chaos() {
                   </p>
                 )}
 
-                <div className="theme-surface-overlay rounded-[1.5rem] p-5">
+                <div className="theme-surface-overlay rounded-[0.75rem] p-5">
                   <p className="section-kicker text-[10px] font-medium text-orange-200/70">Path forward</p>
                   <p className="mt-2 text-sm text-slate-200">{card.pathForward}</p>
                 </div>
