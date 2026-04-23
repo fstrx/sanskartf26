@@ -160,7 +160,7 @@ export default function Hero() {
           animate="visible"
           custom={0.9}
         >
-          Conflict rarely arrives all at once. Repair begins when someone refuses to let fear lead.
+          "He who lives in harmony with himself lives in harmony with the universe.”  -  Marcus Aurelius
         </motion.p>
 
         <motion.div
