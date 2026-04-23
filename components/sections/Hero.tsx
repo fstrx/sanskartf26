@@ -150,13 +150,9 @@ export default function Hero() {
           className="relative max-w-5xl"
         >
           <div className="hero-headline-glow pointer-events-none absolute inset-x-6 top-1/2 -z-10 h-28 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(8,14,28,0.8)_0%,rgba(8,14,28,0.38)_58%,transparent_100%)] blur-3xl sm:h-36 xl:h-44" />
-          <h1 className="hero-headline font-display text-5xl leading-[0.9] tracking-tight text-white sm:text-6xl md:text-7xl xl:text-[8rem]">
-            <span className="block sm:whitespace-nowrap">
-              Peace Begins When
-            </span>
-            <span className="block sm:whitespace-nowrap">
-              We Care Enough to Listen
-            </span>
+          <h1 className="hero-headline font-display text-5xl leading-[0.92] tracking-tight text-white sm:text-6xl md:text-7xl xl:text-[7.5rem]">
+            <span className="block">Peace Begins</span>
+            <span className="block">When We Listen</span>
           </h1>
         </motion.div>
 
@@ -167,10 +163,9 @@ export default function Hero() {
           animate="visible"
           custom={0.9}
         >
-          “He who lives in harmony with himself lives in harmony with the
-          universe.” — Marcus Aurelius. Hurt rarely appears all at once; healing
-          often begins when one person slows down, listens, and refuses to let
-          fear speak for everyone.
+          Peace is not only an idea for leaders. It begins at home, in classrooms,
+          between neighbors, and in the quiet moment when someone cares enough to
+          listen before judging.
         </motion.p>
 
         <motion.div
@@ -185,7 +180,7 @@ export default function Hero() {
             variant="primary"
             className="px-8 py-4 text-base"
           >
-            See Why Conflict Starts
+            Start the Journey
           </Button>
           <Button href="#cta" variant="ghost" className="px-8 py-4 text-base">
             Share a Thought

@@ -817,10 +817,10 @@ export const ctaPrompts = [
 ]
 
 export const navLinks = [
-  { label: 'Why Conflict Starts', href: '#chaos' },
+  { label: 'Conflict', href: '#chaos' },
   { label: 'Healing', href: '#understanding' },
   { label: 'Choices', href: '#interactive' },
-  { label: 'Around the World', href: '#global' },
-  { label: 'The Cost', href: '#data' },
+  { label: 'World', href: '#global' },
+  { label: 'Cost', href: '#data' },
   { label: 'Share', href: '#cta' },
 ]
