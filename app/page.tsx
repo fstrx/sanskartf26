@@ -7,6 +7,7 @@ import Interactive from '@/components/sections/Interactive'
 import Global from '@/components/sections/Global'
 import Data from '@/components/sections/Data'
 import CTA from '@/components/sections/CTA'
+import ConflictTracker from '@/components/sections/ConflictTracker'
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
+      <ConflictTracker />
     </>
   )
 }

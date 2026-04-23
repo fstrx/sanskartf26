@@ -68,7 +68,7 @@ function RepairVisual({ activeIndex }: { activeIndex: number }) {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -14, scale: 0.98 }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-x-5 bottom-5 top-24 sm:inset-x-8 sm:bottom-7"
+          className="absolute inset-x-5 bottom-14 top-24 sm:inset-x-8 sm:bottom-16"
         >
           {activeIndex === 0 && <DialogueVisual />}
           {activeIndex === 1 && <EmpathyVisual />}
@@ -109,25 +109,25 @@ function SignalPoint({ className, delay = 0 }: { className: string; delay?: numb
 
 function DialogueVisual() {
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 mx-auto max-w-[26rem]">
       <motion.div
         initial={{ opacity: 0, scaleX: 0.8 }}
         animate={{ opacity: 1, scaleX: 1 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-x-[12%] top-[27%] h-[42%] rounded-[999px] border border-cyan-100/18"
+        className="absolute left-1/2 top-1/2 h-24 w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-[999px] border border-cyan-100/18"
       />
-      <SignalPoint className="left-[15%] top-[39%]" delay={0.08} />
-      <SignalPoint className="right-[15%] top-[39%]" delay={0.16} />
+      <SignalPoint className="left-[14%] top-1/2 -translate-y-1/2" delay={0.08} />
+      <SignalPoint className="right-[14%] top-1/2 -translate-y-1/2" delay={0.16} />
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.28, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-[27%] right-[27%] top-[52%] h-px origin-left bg-gradient-to-r from-cyan-200 via-white to-cyan-200"
+        className="absolute left-[28%] right-[28%] top-1/2 h-px origin-left bg-gradient-to-r from-cyan-200 via-white to-cyan-200"
       />
       <motion.div
         animate={{ opacity: [0.18, 0.42, 0.18] }}
         transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-1/2 top-[52%] h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/14 blur-2xl"
+        className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/14 blur-2xl"
       />
     </div>
   )
@@ -135,24 +135,24 @@ function DialogueVisual() {
 
 function EmpathyVisual() {
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 mx-auto max-w-[26rem]">
       <motion.div
         initial={{ x: -18, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-[18%] top-[30%] h-28 w-24 rounded-[48%_52%_45%_55%] border border-indigo-200/28 bg-indigo-300/8"
+        className="absolute left-[15%] top-1/2 h-24 w-20 -translate-y-1/2 rounded-[48%_52%_45%_55%] border border-indigo-200/28 bg-indigo-300/8 sm:h-28 sm:w-24"
       />
       <motion.div
         initial={{ x: 18, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute right-[18%] top-[30%] h-28 w-24 rounded-[52%_48%_55%_45%] border border-cyan-200/28 bg-cyan-300/8"
+        className="absolute right-[15%] top-1/2 h-24 w-20 -translate-y-1/2 rounded-[52%_48%_55%_45%] border border-cyan-200/28 bg-cyan-300/8 sm:h-28 sm:w-24"
       />
       <motion.div
         initial={{ scale: 0.72, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.22, duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 top-[46%] flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-full border border-white/20 bg-white/8"
+        className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/8"
       >
         <span className="h-8 w-8 rounded-full bg-cyan-100/90" />
       </motion.div>
@@ -160,7 +160,7 @@ function EmpathyVisual() {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.38, duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-[29%] right-[29%] top-[66%] h-px origin-center bg-gradient-to-r from-indigo-200 via-white to-cyan-200"
+        className="absolute left-[28%] right-[28%] top-[72%] h-px origin-center bg-gradient-to-r from-indigo-200 via-white to-cyan-200"
       />
     </div>
   )
@@ -170,7 +170,7 @@ function LearningVisual() {
   const rows = ['Identity', 'Source', 'Pattern']
 
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 mx-auto max-w-[26rem]">
       {[0, 1, 2, 3, 4].map((index) => (
         <motion.span
           key={index}
@@ -178,24 +178,24 @@ function LearningVisual() {
           animate={{ opacity: 1, rotate: index % 2 === 0 ? 6 : -5, y: 0 }}
           transition={{ delay: index * 0.06, duration: 0.4 }}
           className="absolute h-8 w-2 rounded-full bg-rose-300/55"
-          style={{ left: `${16 + index * 9}%`, top: `${27 + (index % 3) * 13}%` }}
+          style={{ left: `${12 + index * 8}%`, top: `${24 + (index % 3) * 13}%` }}
         />
       ))}
 
-      <div className="absolute right-[10%] top-[24%] w-[54%] space-y-4">
+      <div className="absolute right-[6%] top-1/2 w-[58%] -translate-y-1/2 space-y-3 sm:space-y-4">
         {rows.map((row, index) => (
           <motion.div
             key={row}
             initial={{ opacity: 0, x: 18 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.18 + index * 0.1, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2 sm:gap-3"
           >
             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-cyan-200/20 bg-cyan-300/10 text-[10px] font-bold text-cyan-100">
               {index + 1}
             </span>
             <span className="h-px flex-1 bg-gradient-to-r from-cyan-100/80 to-cyan-100/10" />
-            <span className="w-20 text-right text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-300">{row}</span>
+            <span className="w-16 text-right text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-300 sm:w-20 sm:text-[10px] sm:tracking-[0.18em]">{row}</span>
           </motion.div>
         ))}
       </div>
@@ -205,12 +205,12 @@ function LearningVisual() {
 
 function BridgeVisual() {
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 mx-auto max-w-[26rem]">
       <motion.div
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ delay: 0.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-[14%] right-[14%] top-[43%] h-2 origin-left rounded-full bg-gradient-to-r from-indigo-200 via-cyan-100 to-emerald-200"
+        className="absolute left-[12%] right-[12%] top-1/2 h-2 origin-left -translate-y-1/2 rounded-full bg-gradient-to-r from-indigo-200 via-cyan-100 to-emerald-200"
       />
       {[18, 34, 50, 66, 82].map((left, index) => (
         <motion.div
@@ -218,7 +218,7 @@ function BridgeVisual() {
           initial={{ scaleY: 0, opacity: 0 }}
           animate={{ scaleY: 1, opacity: 1 }}
           transition={{ delay: 0.08 + index * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute top-[45%] h-[34%] w-3 origin-top rounded-b-full border border-cyan-200/18 bg-white/8"
+          className="absolute top-1/2 h-[36%] w-3 origin-top rounded-b-full border border-cyan-200/18 bg-white/8"
           style={{ left: `${left}%` }}
         />
       ))}
@@ -227,7 +227,7 @@ function BridgeVisual() {
           key={index}
           animate={{ y: [0, -7, 0] }}
           transition={{ duration: 2.4, repeat: Infinity, delay: index * 0.25, ease: 'easeInOut' }}
-          className="absolute top-[28%] h-4 w-4 rounded-full bg-cyan-100/80"
+          className="absolute top-[26%] h-4 w-4 rounded-full bg-cyan-100/80"
           style={{ left: `${31 + index * 18}%` }}
         />
       ))}
@@ -237,12 +237,12 @@ function BridgeVisual() {
 
 function JusticeVisual() {
   return (
-    <div className="absolute inset-0">
+    <div className="absolute inset-0 mx-auto max-w-[26rem]">
       <motion.div
         initial={{ scale: 0.82, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 top-[44%] h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-100/24"
+        className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-cyan-100/24 sm:h-32 sm:w-32"
       />
       <motion.div
         initial={{ pathLength: 0 }}
@@ -275,7 +275,7 @@ function JusticeVisual() {
         initial={{ scale: 0.72, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.38, duration: 0.44, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 top-[44%] flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cyan-100 text-xs font-black uppercase tracking-[0.16em] text-slate-950"
+        className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cyan-100 text-[10px] font-black uppercase tracking-[0.14em] text-slate-950 sm:h-16 sm:w-16 sm:text-xs sm:tracking-[0.16em]"
       >
         Truth
       </motion.div>

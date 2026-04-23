@@ -144,8 +144,11 @@ function ConceptNetwork({
             </mesh>
 
             {(isActive || isHovered) && (
-              <Html center distanceFactor={8.5} position={[0, 0.42, 0]}>
-                <div className="pointer-events-none max-w-[11rem] rounded-2xl border border-white/15 bg-slate-950/80 px-3 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.24em] text-white shadow-[0_0_30px_rgba(79,70,229,0.25)] backdrop-blur-md whitespace-normal text-pretty">
+              <Html center distanceFactor={9.5} position={[0, 0.4, 0]}>
+                <div
+                  data-repair-node-label
+                  className="pointer-events-none rounded-lg border border-white/15 bg-slate-950/80 px-2.5 py-1.5 text-center text-[7px] font-semibold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_rgba(79,70,229,0.22)] backdrop-blur-md whitespace-nowrap"
+                >
                   {step.title}
                 </div>
               </Html>
