@@ -18,6 +18,31 @@ const statusCopy: Record<ConflictStatus, string> = {
   repair: 'Repair cases',
 }
 
+function getMarkerOffset(id: string) {
+  const offsets: Record<string, [number, number]> = {
+    sudan: [-0.9, -0.6],
+    'south-sudan': [1.1, 0.4],
+    'central-african-republic': [-1.2, 0.8],
+    'turkey-kurdish': [-1, -0.8],
+    iraq: [0.8, 0.1],
+    syria: [-0.5, 0.7],
+    'hezbollah-lebanon': [0.9, -0.7],
+    'israeli-palestinian': [-0.9, 0.4],
+    'iran-israel-us': [1, -0.5],
+    afghanistan: [-0.8, -0.3],
+    'pakistan-instability': [0.8, 0.5],
+    'india-pakistan': [-0.8, 0.7],
+    taiwan: [0.9, -0.6],
+    'north-korea': [-0.6, -0.7],
+    'south-china-sea': [0.7, 0.6],
+    'northern-triangle': [-0.7, -0.4],
+    mexico: [-1.1, 0.6],
+    haiti: [0.8, 0.5],
+  }
+
+  return offsets[id] ?? [0, 0]
+}
+
 function WorldMapBackdrop() {
   return (
     <svg viewBox="0 0 100 58" className="absolute inset-0 h-full w-full" aria-hidden="true">
@@ -57,13 +82,13 @@ function WorldMapBackdrop() {
       </g>
 
       <g fill="url(#conflict-map-fill)" stroke="rgba(203,213,225,0.28)" strokeWidth="0.28" strokeLinejoin="round">
-        <path d="M7.8 18.8 13.6 12.7l7.5-4.1 6.5 3.8 8.1 1.9 2.8 4.5-5.4 3.7-4.3 4.5-1.8 5.6-4.7 2.8-5.6-1.5-3.7-4.4-4.7-2.1 1.8-4.6-4.8-1 2.5-3Z" />
-        <path d="M22.8 31.9 28.1 32.7l5.4 3.4 3.4 5.9-3.2 6.5-2.9 8.3-4.2-3.2-1.3-7.6-3.8-4.4.2-5.8 1.1-3.9Z" />
-        <path d="M35.1 14.4 41.2 8.8l8.1 2.6 8 3.5 8.7-5.5 14.8.6 9.4-1 5.8 4.7-.6 5.4-8.2 4.6-3.6 6.9-5.4-.5-5.8 4.9-5.5-4.2-5.7-1.4-4.4 3.5-7.5-2.4-5.1-4.9-7.1 1.2-5.1-4 3.1-8.4Z" />
-        <path d="M48.1 27.7 54.5 27.4l5.8 3.4 4.2 6.2-.7 8.4-3.7 6.8-5 4.5-4.5-4.8-2.8-7.4-3.6-5.1 1-6.6 2.9-5.1Z" />
-        <path d="M74.2 39.7 82.2 38.1l7.2 3.1 3.3 4.7-3.6 5.1-7.6 2.1-7.7-3.5-2-5.6 2.4-4.3Z" />
-        <path d="M39.8 7.2 45.5 5.4l5.3 1.4-3.6 3.1-6.4.7-1-3.4Z" />
-        <path d="M63.7 44.2 67.6 45.3l1.1 4.6-3.1 2.2-2.7-3.5.8-4.4Z" />
+        <path d="M7.7 19.1 C11.2 15.3 15.5 11.8 21.4 8.8 C24.5 10.7 28 12.4 32.6 13.5 C35.4 14.1 38.1 16.1 39.1 18.9 C36.1 20.5 34.6 23.1 32.3 25.1 C29.6 27.3 28.4 30.3 27.6 33.4 C24.6 36.4 20.7 37.3 16.6 34.6 C13.8 31.3 11.1 29.6 8.1 28.1 C9.1 25.7 9 23.7 6.4 22.5 C6.7 21.4 7.1 20.3 7.7 19.1Z" />
+        <path d="M22.9 32.4 C26.7 32.8 31.6 34.3 34.3 38.2 C37.1 42.2 36.4 46.5 33.7 49.8 C31.4 52.6 30.7 55.4 29.9 57.1 C27.3 55.4 25.8 52.3 25.2 48.3 C24.8 45.6 22.7 43.7 20.9 41.4 C20.8 38.1 21.4 35.3 22.9 32.4Z" />
+        <path d="M34.8 14.3 C38.9 11.8 42.6 8.9 47.7 8.3 C53.6 10.8 58.3 13.9 64.8 10.2 C71.9 9.2 80.3 10.7 88.5 9.6 C92.7 9.1 95.9 11.4 96.6 14.2 C93.4 17.1 89.9 19.4 86.4 22.1 C84.1 24.2 83.1 27.1 81.8 30.3 C79.3 30.1 76.5 29.8 74.3 31.8 C72 33.7 69.9 35 67.4 35.3 C65 32.8 62.5 30.5 58.6 30.1 C55.4 29.8 52.8 32.2 49.7 31.1 C47.2 30.1 45.2 27.3 42.8 26.5 C40.4 25.6 37.7 27 35.4 25.6 C33.6 24.4 32.1 22.9 30.4 21.7 C31.1 18.9 32.5 16.6 34.8 14.3Z" />
+        <path d="M47.5 27.9 C51.8 27.1 56.8 28.5 61.2 32.4 C65.8 36.4 66.6 42.6 63.6 48.2 C61.7 51.6 58.5 54.4 55.1 56.9 C51.6 53.2 49.1 49.2 48 44.4 C46.7 39 42.7 36.7 44.5 32.5 C45.2 30.8 46.2 29.3 47.5 27.9Z" />
+        <path d="M73.7 39.8 C78.2 38.4 84.2 37.7 89.4 40.9 C92.5 42.9 94 46.2 92.2 49.2 C90.1 52.5 85.7 53.5 81.4 53.4 C77.2 52.5 73.8 50.5 71.5 47.6 C71.3 44.5 72.1 41.9 73.7 39.8Z" />
+        <path d="M39.9 7.4 C43.5 5.4 47.1 5.1 50.9 6.7 C49.5 8.8 47.2 10.1 43.9 10.6 C41.6 10.5 40.2 9.4 39.9 7.4Z" />
+        <path d="M64.1 44.3 C66.7 44.7 68.5 46.3 69 49.5 C67.7 51.2 66.2 52.2 64.4 52.2 C62.6 49.5 62.5 47 64.1 44.3Z" />
       </g>
 
       <g fill="rgba(125,211,252,0.18)" stroke="rgba(203,213,225,0.22)" strokeWidth="0.22">
@@ -73,6 +98,13 @@ function WorldMapBackdrop() {
         <path d="M5.6 16.2 8.3 14.4l2.3.7-2.9 2.8-2.1-1.7Z" />
         <path d="M30.3 51.4 32.9 50.8l1.6 1.8-2.7 1.6-1.5-2.8Z" />
         <path d="M69.2 31.9 72 30.8l1.9 1.6-2.8 1.5-1.9-2Z" />
+      </g>
+
+      <g fill="rgba(226,232,240,0.34)" fontSize="2.2" fontWeight="700" letterSpacing="0.18em">
+        <text x="16" y="25">AMERICAS</text>
+        <text x="46" y="21">EURASIA</text>
+        <text x="52" y="41">AFRICA</text>
+        <text x="76" y="48">OCEANIA</text>
       </g>
     </svg>
   )
@@ -88,13 +120,14 @@ function ConflictMarker({
   onSelect: (conflict: ConflictCase) => void
 }) {
   const isActive = conflict.status === 'active'
+  const [offsetX, offsetY] = getMarkerOffset(conflict.id)
 
   return (
     <button
       type="button"
       onClick={() => onSelect(conflict)}
       className="absolute z-10 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/60"
-      style={{ left: `${conflict.mapX}%`, top: `${conflict.mapY}%` }}
+      style={{ left: `${conflict.mapX + offsetX}%`, top: `${conflict.mapY + offsetY}%` }}
       aria-label={`Open ${conflict.name}`}
     >
       <motion.span
@@ -176,7 +209,7 @@ export default function ConflictTracker() {
         </span>
         <span>
           <span className="section-kicker block text-[9px] font-semibold text-rose-200/80">Conflict Tracker</span>
-          <span className="mt-0.5 block text-xs text-slate-300">{activeCount} active cases tracked</span>
+          <span className="mt-0.5 block text-xs text-slate-300">{activeCount} CFR cases tracked</span>
         </span>
       </motion.button>
 
@@ -210,7 +243,7 @@ export default function ConflictTracker() {
                   <p className="section-kicker text-[10px] font-semibold text-rose-200/75">Global Conflict Tracker</p>
                   <h2 className="premium-heading mt-2 text-3xl leading-tight text-white sm:text-4xl">Map of rupture and repair</h2>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
-                    Curated static overview of active conflicts and repair cases. Last reviewed: {lastReviewed}.
+                    CFR-aligned static overview of active conflicts, with repair cases kept as a separate learning layer. Last reviewed: {lastReviewed}.
                   </p>
                 </div>
                 <button
