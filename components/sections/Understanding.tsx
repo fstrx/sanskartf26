@@ -12,6 +12,8 @@ const UnderstandingScene = dynamic(() => import('@/components/three/understandin
   loading: () => <div className="understanding-scene-shell absolute inset-0 rounded-[2rem]" />,
 })
 
+const quickPractices = ['Stay and listen', 'See the person', 'Teach what fear hides', 'Build everyday trust', 'Name the hurt']
+
 
 
 const repairVisuals = [
