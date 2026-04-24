@@ -34,7 +34,7 @@ export default function Chaos() {
         >
           <motion.p
             variants={fadeUp}
-            className="eyebrow-label mb-3 text-xs font-bold text-red-400"
+            className="eyebrow-label chaos-eyebrow mb-3 text-xs font-bold"
           >
             Why Conflict Starts
           </motion.p>
@@ -44,7 +44,7 @@ export default function Chaos() {
           >
             When Peace Starts <span className="text-red-300">Slipping Away</span>
           </motion.h2>
-          <motion.p variants={fadeUp} className="mt-6 text-lg leading-8 text-slate-300">
+          <motion.p variants={fadeUp} className="chaos-intro mt-6 text-lg leading-8 text-slate-300">
             Peace usually slips away in familiar ways: fear grows, lies spread, people feel left behind, and hurt turns into harm.
           </motion.p>
         </motion.div>
@@ -66,28 +66,32 @@ export default function Chaos() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(248,113,113,0.15),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <div className="relative z-10">
                 <div className="mb-5 flex items-center justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-red-400/18 bg-white/[0.03] text-red-100/90">
+                  <span className="chaos-glyph-shell flex h-12 w-12 items-center justify-center rounded-xl transition-colors duration-300">
                     <Glyph name={card.icon} className="h-6 w-6" title={card.title} />
                   </span>
+<<<<<<< HEAD
                   <span className="section-kicker rounded-full border border-red-400/16 bg-red-500/8 px-3 py-1 text-[10px] font-medium text-red-200/70" chaos-reason-badge>
+=======
+                  <span className="section-kicker chaos-reason-pill rounded-full px-3 py-1 text-[10px] font-medium transition-colors duration-300">
+>>>>>>> f665628 (theme hotfix)
                     Reason {card.id}
                   </span>
                 </div>
 
-                <h3 className="mb-4 text-xl font-bold leading-snug text-white transition-colors duration-200 group-hover:text-red-100">
+                <h3 className="chaos-card-title mb-4 text-xl font-bold leading-snug text-white transition-colors duration-200 group-hover:text-red-100">
                   {card.title}
                 </h3>
-                <p className="mb-6 text-sm leading-7 text-slate-300">{card.description}</p>
+                <p className="chaos-card-copy mb-6 text-sm leading-7 text-slate-300">{card.description}</p>
 
                 {card.stat && (
-                  <p className="mb-5 border-l border-red-400/28 pl-4 text-xs font-medium text-red-200/78">
+                  <p className="chaos-stat mb-5 border-l pl-4 text-xs font-medium transition-colors duration-300">
                     {card.stat}
                   </p>
                 )}
 
                 <div className="theme-surface-overlay rounded-[0.75rem] p-5">
-                  <p className="section-kicker text-[10px] font-medium text-orange-200/70">A gentler way forward</p>
-                  <p className="mt-2 text-sm text-slate-200">{card.pathForward}</p>
+                  <p className="section-kicker chaos-path-label text-[10px] font-medium">A gentler way forward</p>
+                  <p className="chaos-path-copy mt-2 text-sm text-slate-200">{card.pathForward}</p>
                 </div>
               </div>
             </motion.article>
@@ -101,11 +105,11 @@ export default function Chaos() {
           viewport={viewportConfig}
           className="mt-20 text-center"
         >
-          <p className="text-lg text-slate-300">
+          <p className="chaos-outro text-lg text-slate-300">
             If people can pull peace apart, people can also help hold it together again.{' '}
             <a
               href="#understanding"
-              className="text-violet-300 underline underline-offset-4 transition-colors duration-200 hover:text-violet-200"
+              className="chaos-link underline underline-offset-4 transition-colors duration-200"
             >
               See how healing begins.
             </a>

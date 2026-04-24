@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { conflictCases, type ConflictCase, type ConflictRegion, type ConflictStatus } from '@/lib/content'
+import { useTheme } from '@/components/theme/ThemeProvider'
 
 const regions: Array<ConflictRegion | 'All'> = ['All', 'Africa', 'Middle East', 'Europe', 'Asia', 'Americas']
 
@@ -147,11 +148,13 @@ function ConflictMarker({
 }
 
 export default function ConflictTracker() {
+  const { theme } = useTheme()
   const [open, setOpen] = useState(false)
   const [status, setStatus] = useState<ConflictStatus>('active')
   const [region, setRegion] = useState<ConflictRegion | 'All'>('All')
   const [selectedId, setSelectedId] = useState(conflictCases.find((conflict) => conflict.status === 'active')?.id ?? conflictCases[0].id)
   const launcherRef = useRef<HTMLButtonElement>(null)
+  const isLight = theme === 'light'
 
   const activeCount = conflictCases.filter((conflict) => conflict.status === 'active').length
   const filteredCases = useMemo(
@@ -192,24 +195,28 @@ export default function ConflictTracker() {
   }
 
   return (
-    <>
+    <div className="conflict-tracker-root">
       <motion.button
         ref={launcherRef}
         type="button"
         onClick={() => setOpen(true)}
         whileHover={{ y: -2, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="fixed bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border border-rose-300/20 bg-slate-950/78 px-4 py-3 text-left text-white shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 sm:bottom-6 sm:left-auto sm:right-6 sm:translate-x-0"
+        className={`fixed bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-3 rounded-full border px-4 py-3 text-left shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 sm:bottom-6 sm:left-auto sm:right-6 sm:translate-x-0 ${
+          isLight
+            ? 'border-slate-900/10 bg-white/88 text-slate-950 shadow-[0_18px_50px_rgba(148,163,184,0.28)]'
+            : 'border-rose-300/20 bg-slate-950/78 text-white'
+        }`}
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <span className="relative flex h-9 w-9 items-center justify-center rounded-full border border-rose-300/25 bg-rose-400/10 text-rose-100">
+        <span className={`relative flex h-9 w-9 items-center justify-center rounded-full border ${isLight ? 'border-rose-300/35 bg-rose-100 text-rose-700' : 'border-rose-300/25 bg-rose-400/10 text-rose-100'}`}>
           <span className="h-2.5 w-2.5 rounded-full bg-rose-300" />
           <span className="absolute h-7 w-7 animate-ping rounded-full bg-rose-400/15" />
         </span>
         <span>
-          <span className="section-kicker block text-[9px] font-semibold text-rose-200/80">Conflict Tracker</span>
-          <span className="mt-0.5 block text-xs text-slate-300">{activeCount} CFR cases to explore</span>
+          <span className={`section-kicker block text-[9px] font-semibold ${isLight ? 'text-rose-700' : 'text-rose-200/80'}`}>Conflict Tracker</span>
+          <span className={`mt-0.5 block text-xs ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>{activeCount} CFR cases to explore</span>
         </span>
       </motion.button>
 
@@ -222,7 +229,7 @@ export default function ConflictTracker() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] bg-slate-950/82 p-3 backdrop-blur-xl sm:p-5"
+            className={`fixed inset-0 z-[70] p-3 backdrop-blur-xl sm:p-5 ${isLight ? 'bg-slate-900/22' : 'bg-slate-950/82'}`}
           >
             <button
               type="button"
@@ -240,16 +247,20 @@ export default function ConflictTracker() {
             >
               <header className="flex flex-col gap-5 border-b border-white/10 p-5 sm:flex-row sm:items-start sm:justify-between sm:p-6">
                 <div>
-                  <p className="section-kicker text-[10px] font-semibold text-rose-200/75">World Conflict Tracker</p>
-                  <h2 className="premium-heading mt-2 text-3xl leading-tight text-white sm:text-4xl">Where families are hurting, and where healing is being tried</h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">
+                  <p className={`section-kicker text-[10px] font-semibold ${isLight ? 'text-rose-700' : 'text-rose-200/75'}`}>World Conflict Tracker</p>
+                  <h2 className={`premium-heading mt-2 text-3xl leading-tight sm:text-4xl ${isLight ? 'text-slate-950' : 'text-white'}`}>Where families are hurting, and where healing is being tried</h2>
+                  <p className={`mt-3 max-w-2xl text-sm leading-6 ${isLight ? 'text-slate-600' : 'text-slate-300'}`}>
                     This is a static, source-backed overview based mainly on the CFR Global Conflict Tracker, with a separate view for places trying to rebuild trust. Last reviewed: {lastReviewed}.
                   </p>
                 </div>
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="h-10 w-10 rounded-full border border-white/10 bg-white/5 text-lg leading-none text-slate-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                  className={`h-10 w-10 rounded-full border text-lg leading-none transition-colors duration-200 ${
+                    isLight
+                      ? 'border-slate-900/10 bg-white/80 text-slate-600 hover:bg-white hover:text-slate-950'
+                      : 'border-white/10 bg-white/5 text-slate-200 hover:bg-white/10 hover:text-white'
+                  }`}
                   aria-label="Close conflict tracker"
                 >
                   ×
@@ -259,7 +270,7 @@ export default function ConflictTracker() {
               <div className="grid min-h-0 flex-1 gap-0 lg:grid-cols-[1fr_24rem]">
                 <div className="flex min-h-0 flex-col p-4 sm:p-6">
                   <div className="mb-4 flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
-                    <div className="flex w-full rounded-full border border-white/10 bg-white/5 p-1 sm:w-fit">
+                    <div className={`flex w-full rounded-full border p-1 sm:w-fit ${isLight ? 'border-slate-900/10 bg-white/70' : 'border-white/10 bg-white/5'}`}>
                       {(['active', 'repair'] as ConflictStatus[]).map((nextStatus) => {
                         const isSelected = status === nextStatus
 
@@ -269,13 +280,27 @@ export default function ConflictTracker() {
                             type="button"
                             onClick={() => handleStatusChange(nextStatus)}
                             className={`relative rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
-                              isSelected ? 'text-white' : 'text-slate-400 hover:text-white'
-                            }`}
+                              isSelected
+                                ? isLight
+                                  ? 'text-slate-950'
+                                  : 'text-white'
+                                : isLight
+                                  ? 'text-slate-500 hover:text-slate-950'
+                                  : 'text-slate-400 hover:text-white'
+                             }`}
                           >
                             {isSelected ? (
                               <motion.span
                                 layoutId="conflict-status-pill"
-                                className={`absolute inset-0 rounded-full ${nextStatus === 'active' ? 'bg-rose-400/14' : 'bg-cyan-400/14'}`}
+                                className={`absolute inset-0 rounded-full ${
+                                  nextStatus === 'active'
+                                    ? isLight
+                                      ? 'bg-rose-100'
+                                      : 'bg-rose-400/14'
+                                    : isLight
+                                      ? 'bg-cyan-100'
+                                      : 'bg-cyan-400/14'
+                                }`}
                                 transition={{ type: 'spring', stiffness: 260, damping: 28 }}
                               />
                             ) : null}
@@ -296,9 +321,13 @@ export default function ConflictTracker() {
                             onClick={() => setRegion(nextRegion)}
                             className={`shrink-0 rounded-full border px-3 py-2 text-[11px] font-semibold transition-colors duration-200 ${
                               isSelected
-                                ? 'border-cyan-300/35 bg-cyan-400/10 text-cyan-100'
-                                : 'border-white/10 bg-white/[0.03] text-slate-400 hover:text-white'
-                            }`}
+                                ? isLight
+                                  ? 'border-cyan-300/40 bg-cyan-100 text-cyan-800'
+                                  : 'border-cyan-300/35 bg-cyan-400/10 text-cyan-100'
+                                : isLight
+                                  ? 'border-slate-900/10 bg-white/68 text-slate-500 hover:text-slate-950'
+                                  : 'border-white/10 bg-white/[0.03] text-slate-400 hover:text-white'
+                             }`}
                           >
                             {nextRegion}
                           </button>
@@ -307,7 +336,11 @@ export default function ConflictTracker() {
                     </div>
                   </div>
 
-                  <div className="relative min-h-[23rem] flex-1 overflow-hidden rounded-[0.75rem] border border-white/10 bg-[radial-gradient(circle_at_50%_20%,rgba(244,63,94,0.12),transparent_28%),linear-gradient(145deg,rgba(2,6,23,0.92),rgba(15,23,42,0.72))]">
+                  <div className={`relative min-h-[23rem] flex-1 overflow-hidden rounded-[0.75rem] border ${
+                    isLight
+                      ? 'border-slate-900/10 bg-[radial-gradient(circle_at_50%_20%,rgba(244,63,94,0.10),transparent_28%),linear-gradient(145deg,rgba(15,23,42,0.96),rgba(30,41,59,0.88))]'
+                      : 'border-white/10 bg-[radial-gradient(circle_at_50%_20%,rgba(244,63,94,0.12),transparent_28%),linear-gradient(145deg,rgba(2,6,23,0.92),rgba(15,23,42,0.72))]'
+                  }`}>
                     <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(125,211,252,0.07)_1px,transparent_1px),linear-gradient(90deg,rgba(125,211,252,0.07)_1px,transparent_1px)] [background-size:48px_48px]" />
                     <WorldMapBackdrop />
                     {mapCases.map((conflict) => (
@@ -319,7 +352,11 @@ export default function ConflictTracker() {
                       />
                     ))}
 
-                    <div className="pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-3 rounded-[0.5rem] border border-white/10 bg-slate-950/62 px-4 py-3 text-xs text-slate-300 backdrop-blur-md">
+                    <div className={`pointer-events-none absolute bottom-4 left-4 right-4 flex flex-wrap items-center justify-between gap-3 rounded-[0.5rem] border px-4 py-3 text-xs backdrop-blur-md ${
+                      isLight
+                        ? 'border-white/12 bg-slate-950/72 text-slate-100'
+                        : 'border-white/10 bg-slate-950/62 text-slate-300'
+                    }`}>
                       <span>{mapCases.length} visible cases</span>
                       <span className="flex items-center gap-4">
                         <span className="inline-flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-rose-400" /> Hurting now</span>
@@ -341,32 +378,41 @@ export default function ConflictTracker() {
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div>
-                            <p className="section-kicker text-[10px] font-semibold text-slate-400">{selectedConflict.region}</p>
-                            <h3 className="mt-2 text-2xl font-bold leading-tight text-white">{selectedConflict.name}</h3>
-                            <p className="mt-2 text-sm text-slate-400">{selectedConflict.location}</p>
+                            <p className={`section-kicker text-[10px] font-semibold ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>{selectedConflict.region}</p>
+                            <h3 className={`mt-2 text-2xl font-bold leading-tight ${isLight ? 'text-slate-950' : 'text-white'}`}>{selectedConflict.name}</h3>
+                            <p className={`mt-2 text-sm ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>{selectedConflict.location}</p>
                           </div>
-                          <span className={`shrink-0 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${severityTone[selectedConflict.severity]}`}>
+                          <span className={`shrink-0 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] ${
+                            isLight
+                              ? {
+                                  Extreme: 'border-rose-300/45 bg-rose-100 text-rose-800',
+                                  High: 'border-orange-300/45 bg-orange-100 text-orange-800',
+                                  Turbulent: 'border-amber-300/45 bg-amber-100 text-amber-800',
+                                  Repairing: 'border-cyan-300/45 bg-cyan-100 text-cyan-800',
+                                }[selectedConflict.severity]
+                              : severityTone[selectedConflict.severity]
+                          }`}>
                             {selectedConflict.severity}
                           </span>
                         </div>
 
                         <div className="mt-6 space-y-5">
                           <section>
-                            <p className="section-kicker mb-2 text-[10px] font-semibold text-rose-200/70">What is happening</p>
-                            <p className="text-sm leading-7 text-slate-300">{selectedConflict.summary}</p>
+                            <p className={`section-kicker mb-2 text-[10px] font-semibold ${isLight ? 'text-rose-700' : 'text-rose-200/70'}`}>What is happening</p>
+                            <p className={`text-sm leading-7 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>{selectedConflict.summary}</p>
                           </section>
                           <section>
-                            <p className="section-kicker mb-2 text-[10px] font-semibold text-orange-200/70">What families are carrying</p>
-                            <p className="text-sm leading-7 text-slate-300">{selectedConflict.humanitarianNote}</p>
+                            <p className={`section-kicker mb-2 text-[10px] font-semibold ${isLight ? 'text-orange-700' : 'text-orange-200/70'}`}>What families are carrying</p>
+                            <p className={`text-sm leading-7 ${isLight ? 'text-slate-700' : 'text-slate-300'}`}>{selectedConflict.humanitarianNote}</p>
                           </section>
-                          <section className="rounded-[0.5rem] border border-cyan-300/15 bg-cyan-400/8 p-4">
-                            <p className="section-kicker mb-2 text-[10px] font-semibold text-cyan-100/80">What may help healing</p>
-                            <p className="text-sm leading-7 text-cyan-50/88">{selectedConflict.repairLesson}</p>
+                          <section className={`rounded-[0.5rem] border p-4 ${isLight ? 'border-cyan-300/30 bg-cyan-50' : 'border-cyan-300/15 bg-cyan-400/8'}`}>
+                            <p className={`section-kicker mb-2 text-[10px] font-semibold ${isLight ? 'text-cyan-800' : 'text-cyan-100/80'}`}>What may help healing</p>
+                            <p className={`text-sm leading-7 ${isLight ? 'text-cyan-900/90' : 'text-cyan-50/88'}`}>{selectedConflict.repairLesson}</p>
                           </section>
                         </div>
 
                         <div className="mt-7">
-                          <p className="section-kicker mb-3 text-[10px] font-semibold text-slate-400">Sources</p>
+                          <p className={`section-kicker mb-3 text-[10px] font-semibold ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>Sources</p>
                           <div className="flex flex-wrap gap-2">
                             {selectedConflict.sources.map((source) => (
                               <a
@@ -374,20 +420,24 @@ export default function ConflictTracker() {
                                 href={source.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-semibold text-slate-300 transition-colors duration-200 hover:border-cyan-300/30 hover:text-white"
+                                className={`rounded-full border px-3 py-2 text-xs font-semibold transition-colors duration-200 ${
+                                  isLight
+                                    ? 'border-slate-900/10 bg-white/78 text-slate-700 hover:border-cyan-300/40 hover:text-slate-950'
+                                    : 'border-white/10 bg-white/[0.03] text-slate-300 hover:border-cyan-300/30 hover:text-white'
+                                }`}
                               >
                                 {source.label}
                               </a>
                             ))}
                           </div>
-                          <p className="mt-4 text-xs leading-5 text-slate-500">
+                          <p className={`mt-4 text-xs leading-5 ${isLight ? 'text-slate-500' : 'text-slate-500'}`}>
                             This is a static learning dataset. Please use the linked trackers for the most current reporting before making real-world decisions.
                           </p>
                         </div>
                       </motion.div>
                     </AnimatePresence>
                   ) : (
-                    <div className="flex h-full items-center justify-center text-sm text-slate-400">No cases match this filter right now.</div>
+                     <div className={`flex h-full items-center justify-center text-sm ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>No cases match this filter right now.</div>
                   )}
                 </aside>
               </div>
@@ -395,6 +445,6 @@ export default function ConflictTracker() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </>
+    </div>
   )
 }
