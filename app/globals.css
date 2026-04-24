@@ -222,7 +222,7 @@ html[data-theme='light'] body ::-webkit-scrollbar-thumb:hover {
   text-transform: uppercase;
 }
 
-html[data-theme='light'] body #chaos .section-kicker {
+html[data-theme='light'] body #chaos article .section-kicker:first-of-type {
   background-color: rgba(128, 0, 0, 0.85) !important;
   border-color: rgba(128, 0, 0, 0.4) !important;
   color: #ffffff !important;
