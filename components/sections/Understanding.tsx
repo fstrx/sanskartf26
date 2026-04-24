@@ -12,7 +12,7 @@ const UnderstandingScene = dynamic(() => import('@/components/three/understandin
   loading: () => <div className="absolute inset-0 rounded-[2rem] bg-[#060812]" />,
 })
 
-const quickPractices = ['Stay and listen', 'See the person', 'Teach what fear hides', 'Build everyday trust', 'Name the hurt']
+
 
 const repairVisuals = [
   {
