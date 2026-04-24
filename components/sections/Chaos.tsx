@@ -69,11 +69,7 @@ export default function Chaos() {
                   <span className="chaos-glyph-shell flex h-12 w-12 items-center justify-center rounded-xl transition-colors duration-300">
                     <Glyph name={card.icon} className="h-6 w-6" title={card.title} />
                   </span>
-<<<<<<< HEAD
-                  <span className="section-kicker rounded-full border border-red-400/16 bg-red-500/8 px-3 py-1 text-[10px] font-medium text-red-200/70" chaos-reason-badge>
-=======
                   <span className="section-kicker chaos-reason-pill rounded-full px-3 py-1 text-[10px] font-medium transition-colors duration-300">
->>>>>>> f665628 (theme hotfix)
                     Reason {card.id}
                   </span>
                 </div>
